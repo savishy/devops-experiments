@@ -138,3 +138,8 @@ However, on my Windows + Cygwin laptop, changing the permissions did not appear 
 
 After tearing my hair out some, I figured out how to successfully change the permissions and connect to the machine. :+1:
 See the problem screenshots and solution [in this comment.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201237692) 
+
+##### Errors while deploying Vagrant Box with EC2
+
+I encountered multiple issues while exploring deployment of a Vagrant box to the EC2 Image. 
+See problems and solutions [here.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201246495)
