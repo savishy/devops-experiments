@@ -95,7 +95,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 3. This downloaded the Vagrant Box - which is basically a VirtualBox Image - as well as VirtualBox itself. 
 4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see [troubleshooting](#troubleshooting)), I SSHed to it. [See image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
 3. Started the Ansible Tower UI at https://10.42.0.42/ and the credentials provided. Plugged in my trial license key. 
-4. Dashboard showed up as expected :+1: ![See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
+4. Dashboard showed up as expected :+1: [See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
 
 ##### Amazon EC2 with Vagrant
 
@@ -110,15 +110,15 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 <a name="troubleshooting"/>
 ## Troubleshooting
 
-### Vagrant + Ansible Setup: Error when booting VirtualBox Image ###
+##### Vagrant + Ansible Setup: Error when booting VirtualBox Image
 While starting up an Ansible Tower VM with Vagrant `vagrant up`, I received this error:
 
-![vagrant console error](https://cloud.githubusercontent.com/assets/13379978/14041575/3da148d4-f298-11e5-8bbb-75a9c7e0ffd0.PNG)
+[vagrant console error](https://cloud.githubusercontent.com/assets/13379978/14041575/3da148d4-f298-11e5-8bbb-75a9c7e0ffd0.PNG)
 
 The installation process had installed VirtualBox on my machine automatically, and created a VM. So I opened VirtualBox and tried to start the just-created VM. 
 This showed me a more helpful error:
 
-![VirtualBox Error](https://cloud.githubusercontent.com/assets/13379978/14041574/3d9f228e-f298-11e5-9c2b-ace976d11413.PNG)
+[VirtualBox Error](https://cloud.githubusercontent.com/assets/13379978/14041574/3d9f228e-f298-11e5-9c2b-ace976d11413.PNG)
 
 **Solution**
 
@@ -126,3 +126,11 @@ This showed me a more helpful error:
 2. Restarted Machine and VM. 
 3. This time the Ansible Tower VM came up properly. :+1:
 
+##### SSH to EC2 instance: PEM file permissions cannot be changed by cygwin
+
+Before Connecting to the EC2 instance using the downloaded PEM File, I would need to change the file's permissions to `0400`. 
+
+However, on my Windows + Cygwin laptop, changing the permissions did not appear to work at all.
+
+After tearing my hair out some, I figured out how to successfully change the permissions and connect to the machine. :+1:
+See the problem screenshots and solution [in this comment.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201237692) 
