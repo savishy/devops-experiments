@@ -59,7 +59,12 @@ With the setup in place:
 Creating a local Ansible Tower VM with Vagrant: 
 
 1. Reading: 1h
-2. Downloads and Installs: 2h
+2. Downloads and Installs: 3h
+
+Creating and Configuring Amazon EC2 Image with Vagrant:
+
+1. Reading: 30m
+2. Configuration: 30m
 
 
 #### References
@@ -68,7 +73,8 @@ Creating a local Ansible Tower VM with Vagrant:
 * [Configuring Ansible Tower with Vagrant](https://www.ansible.com/tower-trial)
 * [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
 * [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
-
+* [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
+* 
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
@@ -80,7 +86,7 @@ Creating a local Ansible Tower VM with Vagrant:
 <a name="stepsfollowed"/>
 #### Steps Followed
 
-##### Ansible Tower 
+##### Ansible Tower Installation
 
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
@@ -90,6 +96,15 @@ Creating a local Ansible Tower VM with Vagrant:
 4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see [troubleshooting](#troubleshooting)), I SSHed to it. [See image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
 3. Started the Ansible Tower UI at https://10.42.0.42/ and the credentials provided. Plugged in my trial license key. 
 4. Dashboard showed up as expected :+1: ![See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
+
+##### Amazon EC2 with Vagrant
+
+1. Created an EC2 instance 
+  1. To avail of the free tier, I created and launched a `t1.micro` instance.
+  2. [See instance details.](https://cloud.githubusercontent.com/assets/13379978/14042720/9e06ccb2-f2a2-11e5-9dcf-69204bba0f64.png)
+  3. [See details on connecting to the instance.](https://cloud.githubusercontent.com/assets/13379978/14042786/403ff40e-f2a3-11e5-9e84-b848c04d1233.png)
+2. Installed the `vagrant-aws` plugin. Configured and started up the AWS Instance. 
+3. 
 
 
 <a name="troubleshooting"/>
