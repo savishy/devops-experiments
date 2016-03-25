@@ -65,7 +65,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 
 1. Reading: 30m
 2. Configuration: 30m
-3. Troubleshooting: 1h
+3. Troubleshooting: 2h
 
 
 #### References
@@ -75,7 +75,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 * [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
 * [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
 * [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
-
+* [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
 
 #### Choices made 
 
@@ -99,7 +99,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 3. Started the Ansible Tower UI at https://10.42.0.42/ and the credentials provided. Plugged in my trial license key. 
 4. Dashboard showed up as expected :+1: [See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
 
-##### Amazon EC2 with Vagrant
+##### Deploying Amazon EC2 with Vagrant
 
 1. Created an EC2 instance 
   1. To avail of the free tier, I created and launched a `t1.micro` instance.
@@ -110,6 +110,15 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 3. Configured a Vagrantfile for the AWS Instance (see folder `ec2-i-f9eaa477` in this repository). 
 4. Using `vagrant up --provider=aws`, started up the instance. 
 5. Encountered several issues and solved them. (See [troubleshooting](#troubleshooting)).
+
+Finally, an EC2 `m3.medium` instance was successfully launched. 
+[See image.](https://cloud.githubusercontent.com/assets/13379978/14044040/84e61332-f2b1-11e5-9415-3be0d2e535ed.png)
+
+Details:
+
+* m3.medium
+* AMI: ami-e90dc68a
+* Vagrant Box Used: [lattice/ubuntu-trusty-x64](https://atlas.hashicorp.com/lattice/boxes/ubuntu-trusty-64)
 
 <a name="troubleshooting"/>
 ## Troubleshooting
