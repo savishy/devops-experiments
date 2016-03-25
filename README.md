@@ -36,14 +36,21 @@ With the setup in place:
 
 5. Feel free to use AWS and share the working installation URL also.
 
-6. Recommeneded tool for AWS : Vagrant
+6. Recommended tool for AWS : Vagrant
 
 # Task Notes #
 
 ## Introduction ##
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
-2. 
+
+
+## Time Tracking ##
+
+1. Reading: 1h
+2. Downloads and Installs: 1h
+3. 
+
 
 ## References Used ##
 
@@ -56,6 +63,8 @@ https://www.ansible.com/tower-trial
 Search for Vagrant Boxes
 https://atlas.hashicorp.com/boxes/search
 
+Puppet Pre-install
+https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet
 
 ## Choices made ##
 
@@ -63,6 +72,7 @@ https://atlas.hashicorp.com/boxes/search
 2. Ideally I would have tried out all 3 tools and made an educated choice. 
 3. But in the given time for the assignment, the few reviews I read seemed to indicate similar attributes for all 3 tools. Thus my choice.
 4. An additional weighting factor in favor of Ansible was that it seems easy to configure vagrant with an Ansible tower. 
+5. [I read that](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet) Puppet Master does not work on Windows. Given that my primary machine at home is Windows I discarded Puppet. 
 
 
 
