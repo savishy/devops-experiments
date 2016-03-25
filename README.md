@@ -1,10 +1,14 @@
 # devops-experiments
 
 ##### Table of Contents  
-[Headers](#headers)  
 
-<a name="headers"/>
-## Task Summary ##
+* [Summary of Task](#summary)
+* [My Notes](#mynotes)
+..* [Steps Followed](#stepsfollowed)
+..* [Troubleshooting](#troubleshooting)
+
+<a name="summary"/>
+## Summary of Task ##
 
 Set up one click deploy and provisioning of an environment with all neccessary elements of a DevOps Toolchain.
 
@@ -42,22 +46,22 @@ With the setup in place:
 
 6. Recommended tool for AWS : Vagrant
 
-<a name="headers"/>
-## Task Notes ##
+<a name="mynotes"/>
+## My Notes ##
 
-## Introduction ##
+#### Introduction
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
 
 
-## Time Tracking ##
+#### Time Tracking
 
 1. Reading: 1h
 2. Downloads and Installs: 1h
 3. 
 
 
-## References Used ##
+#### References
 
 Deploying on EC2 with Vagrant
 http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/
@@ -71,7 +75,7 @@ https://atlas.hashicorp.com/boxes/search
 Puppet Pre-install
 https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet
 
-## Choices made ##
+#### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
 2. Ideally I would have tried out all 3 tools and made an educated choice. 
@@ -81,14 +85,15 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 
 
 
-## Steps Followed ## 
+#### Steps Followed
 
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
-2. Played around with Vagrant 
+2. Created an Ansible Tower VM (on localhost) 
 
 
-## Troubleshooting ##
+<a name="troubleshooting"/>
+## Troubleshooting
 
 ### Vagrant + Ansible Setup: Error when booting VirtualBox Image ###
 While starting up an Ansible Tower VM with Vagrant `vagrant up`, I received this error:
