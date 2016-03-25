@@ -38,8 +38,36 @@ With the setup in place:
 
 6. Recommeneded tool for AWS : Vagrant
 
-## Task Notes ##
+# Task Notes #
+
+## Introduction ##
+
+1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
+2. 
+
+## References Used ##
+
+Deploying on EC2 with Vagrant
+http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/
+
+Configuring Ansible Tower with Vagrant
+https://www.ansible.com/tower-trial
+
+Search for Vagrant Boxes
+https://atlas.hashicorp.com/boxes/search
+
+
+## Choices made ##
+
+1. Of Puppet, Chef and Ansible, I chose Ansible. 
+2. Ideally I would have tried out all 3 tools and made an educated choice. 
+3. But in the given time for the assignment, the few reviews I read seemed to indicate similar attributes for all 3 tools. Thus my choice.
+4. An additional weighting factor in favor of Ansible was that it seems easy to configure vagrant with an Ansible tower. 
 
 
 
+## Steps Followed ## 
 
+1. Learned the basics of Vagrant, Ansible 
+2. Downloaded and installed Vagrant. 
+2. Played around with Vagrant 
