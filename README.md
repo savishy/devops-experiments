@@ -64,17 +64,10 @@ Creating a local Ansible Tower VM with Vagrant:
 
 #### References
 
-Deploying on EC2 with Vagrant
-http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/
-
-Configuring Ansible Tower with Vagrant
-https://www.ansible.com/tower-trial
-
-Search for Vagrant Boxes
-https://atlas.hashicorp.com/boxes/search
-
-Puppet Pre-install
-https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet
+* [Deploying on EC2 with Vagrant](http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/)
+* [Configuring Ansible Tower with Vagrant](https://www.ansible.com/tower-trial)
+* [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
+* [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
 
 #### Choices made 
 
@@ -91,10 +84,12 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
+3. Obtained a trial license for *Ansible Basic Tower. Ansible Enterprise tower required a delay of 1 business day to obtain a license.*
 2. Created an Ansible Tower VM as per the documentation for Ansible Tower Trial. 
 3. This downloaded the Vagrant Box - which is basically a VirtualBox Image - as well as VirtualBox itself. 
 4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see [troubleshooting](#troubleshooting)), I SSHed to it. [See image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
-3. 
+3. Started the Ansible Tower UI at https://10.42.0.42/ and the credentials provided. Plugged in my trial license key. 
+4. Dashboard showed up as expected :+1: ![See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
 
 
 <a name="troubleshooting"/>
