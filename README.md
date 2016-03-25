@@ -2,10 +2,10 @@
 
 ##### Table of Contents  
 
-* [Summary of Task](#summary)
-* [My Notes](#mynotes)
-..* [Steps Followed](#stepsfollowed)
-..* [Troubleshooting](#troubleshooting)
+1. [Summary of Task](#summary)
+2. [My Notes](#mynotes)
+  1. [Steps Followed](#stepsfollowed)
+  2. [Troubleshooting](#troubleshooting)
 
 <a name="summary"/>
 ## Summary of Task ##
