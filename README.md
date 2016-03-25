@@ -56,7 +56,7 @@ With the setup in place:
 
 #### Time Tracking
 
-Creating a local Ansible Tower VM with Vagrant: 
+Creating a local Ansible Tower VM with Vagrant: 4h
 
 1. Reading: 1h
 2. Downloads and Installs: 3h
@@ -65,6 +65,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 
 1. Reading: 30m
 2. Configuration: 30m
+3. Troubleshooting: 1h
 
 
 #### References
@@ -74,7 +75,8 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
 * [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
 * [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
 * [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
-* 
+
+
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
@@ -103,9 +105,11 @@ Creating and Configuring Amazon EC2 Image with Vagrant:
   1. To avail of the free tier, I created and launched a `t1.micro` instance.
   2. [See instance details.](https://cloud.githubusercontent.com/assets/13379978/14042720/9e06ccb2-f2a2-11e5-9dcf-69204bba0f64.png)
   3. [See details on connecting to the instance.](https://cloud.githubusercontent.com/assets/13379978/14042786/403ff40e-f2a3-11e5-9e84-b848c04d1233.png)
-2. Installed the `vagrant-aws` plugin. Configured and started up the AWS Instance. 
-3. 
-
+  4. Downloaded the PEM File (this is in the top-level of the repository, `devops.pem`).
+2. Installed the `vagrant-aws` plugin. 
+3. Configured a Vagrantfile for the AWS Instance (see folder `ec2-i-f9eaa477` in this repository). 
+4. Using `vagrant up --provider=aws`, started up the instance. 
+5. Encountered several issues and solved them. (See [troubleshooting](#troubleshooting)).
 
 <a name="troubleshooting"/>
 ## Troubleshooting
