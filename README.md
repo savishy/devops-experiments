@@ -81,3 +81,19 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
 2. Played around with Vagrant 
+
+
+## Troubleshooting ##
+
+### Vagrant Error ###
+While starting up an Ansible Tower VM with Vagrant `vagrant up`, I received this error:
+
+![vagrant error](https://drive.google.com/file/d/0ByY5os5OPWQtZW80bHhpejl4eEk/view?usp=sharing)
+
+The installation process had installed VirtualBox on my machine automatically, and created a VM. So I opened VirtualBox and tried to start the just-created VM. 
+This showed me a more helpful error:
+
+![VirtualBox Error](https://drive.google.com/file/d/0ByY5os5OPWQtaXMzX3FPZU9MODg/view?usp=sharing)
+
+
+
