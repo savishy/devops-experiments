@@ -1,6 +1,10 @@
 # devops-experiments
 
-**Task Summary**
+##### Table of Contents  
+[Headers](#headers)  
+
+<a name="headers"/>
+## Task Summary ##
 
 Set up one click deploy and provisioning of an environment with all neccessary elements of a DevOps Toolchain.
 
@@ -38,7 +42,8 @@ With the setup in place:
 
 6. Recommended tool for AWS : Vagrant
 
-# Task Notes #
+<a name="headers"/>
+## Task Notes ##
 
 ## Introduction ##
 
@@ -85,15 +90,19 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 
 ## Troubleshooting ##
 
-### Vagrant Error ###
+### Vagrant + Ansible Setup: Error when booting VirtualBox Image ###
 While starting up an Ansible Tower VM with Vagrant `vagrant up`, I received this error:
 
-![vagrant error](https://drive.google.com/file/d/0ByY5os5OPWQtZW80bHhpejl4eEk/view?usp=sharing)
+![vagrant console error](https://cloud.githubusercontent.com/assets/13379978/14041575/3da148d4-f298-11e5-8bbb-75a9c7e0ffd0.PNG)
 
 The installation process had installed VirtualBox on my machine automatically, and created a VM. So I opened VirtualBox and tried to start the just-created VM. 
 This showed me a more helpful error:
 
-![VirtualBox Error](https://drive.google.com/file/d/0ByY5os5OPWQtaXMzX3FPZU9MODg/view?usp=sharing)
+![VirtualBox Error](https://cloud.githubusercontent.com/assets/13379978/14041574/3d9f228e-f298-11e5-9c2b-ace976d11413.PNG)
 
+**Solution**
 
+1. Went to BIOS and enabled VT-x. (Lenovo-specific option: Configuration > Virtualization > Enabled). 
+2. Restarted Machine and VM. 
+3. This time the Ansible Tower VM came up properly. :+1:
 
