@@ -84,8 +84,7 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 4. An additional weighting factor in favor of Ansible was that it seems easy to configure vagrant with an Ansible tower. 
 5. [I read that](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet) Puppet Master does not work on Windows. Given that my primary machine at home is Windows I discarded Puppet. 
 
-
-
+<a name="stepsfollowed"/>
 #### Steps Followed
 
 ##### Ansible Tower 
@@ -94,7 +93,7 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 2. Downloaded and installed Vagrant. 
 2. Created an Ansible Tower VM as per the documentation for Ansible Tower Trial. 
 3. This downloaded the Vagrant Box - which is basically a VirtualBox Image - as well as VirtualBox itself. 
-4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see (troubleshooting)[#troubleshooting]), I SSHed to it. [image of succesful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
+4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see [troubleshooting](#troubleshooting)), I SSHed to it. [See image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
 3. 
 
 
