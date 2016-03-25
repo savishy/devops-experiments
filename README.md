@@ -56,9 +56,10 @@ With the setup in place:
 
 #### Time Tracking
 
+Creating a local Ansible Tower VM with Vagrant: 
+
 1. Reading: 1h
-2. Downloads and Installs: 1h
-3. 
+2. Downloads and Installs: 2h
 
 
 #### References
@@ -87,9 +88,14 @@ https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-pup
 
 #### Steps Followed
 
+##### Ansible Tower 
+
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
-2. Created an Ansible Tower VM (on localhost) 
+2. Created an Ansible Tower VM as per the documentation for Ansible Tower Trial. 
+3. This downloaded the Vagrant Box - which is basically a VirtualBox Image - as well as VirtualBox itself. 
+4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see (troubleshooting)[#troubleshooting]), I SSHed to it. [image of succesful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
+3. 
 
 
 <a name="troubleshooting"/>
