@@ -61,7 +61,7 @@ Creating a local Ansible Tower VM with Vagrant: 4h
 1. Reading: 1h
 2. Downloads and Installs: 3h
 
-Creating and Configuring Amazon EC2 Image with Vagrant:
+Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 
 1. Reading: 30m
 2. Configuration: 30m
