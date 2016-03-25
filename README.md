@@ -1,7 +1,5 @@
 # devops-experiments
 
-This is a repository to track the following task:
-
 **Task Summary**
 
 Set up one click deploy and provisioning of an environment with all neccessary elements of a DevOps Toolchain.
@@ -39,4 +37,9 @@ With the setup in place:
 5. Feel free to use AWS and share the working installation URL also.
 
 6. Recommeneded tool for AWS : Vagrant
+
+## Task Notes ##
+
+
+
 
