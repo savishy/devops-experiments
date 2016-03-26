@@ -67,6 +67,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 2. Configuration: 30m
 3. Troubleshooting: 2h
 
+Creating a Dev Environment with Ansible: 6h
 
 #### References
 
@@ -78,6 +79,8 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 * [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
 * [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
 * [Maven Wrapper](https://github.com/takari/maven-wrapper)
+* [Ansible and Jenkins](http://codeheaven.io/an-introduction-to-ansible/)
+* [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
 * other: 
 [1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
 [3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
