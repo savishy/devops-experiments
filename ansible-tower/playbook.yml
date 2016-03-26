@@ -1,0 +1,9 @@
+---
+- name: setup environment
+  hosts: webservers
+  remote_user: ec2-user
+  roles:
+  - tools
+  - apache
+  - mysql
+  - tomcat

@@ -1,0 +1,4 @@
+---
+  - name: install mysql
+    yum: name=mysql update_cache=yes state=latest
+    sudo: true

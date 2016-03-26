@@ -1,0 +1,7 @@
+tomcat_url: http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz 
+tomcat_filename: apache-tomcat-7.0.61
+tomcat_download_dest: /tmp/
+tomcat_install_dest: /usr/share/
+tomcat_http_port: 8080
+tomcat_admin_username: admin
+tomcat_admin_password: admin
