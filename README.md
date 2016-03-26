@@ -77,6 +77,16 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 * [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
 * [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
 * [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
+* [Maven Wrapper](https://github.com/takari/maven-wrapper)
+* other: 
+[1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
+[3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
+[4](http://docs.ansible.com/ansible/file_module.html),
+[5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration)
+
+
+
+
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
