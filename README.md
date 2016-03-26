@@ -77,6 +77,9 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 * [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
 * [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
 * [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
+* [Maven Wrapper](https://github.com/takari/maven-wrapper)
+
+
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
