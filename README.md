@@ -76,7 +76,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 * [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
 * [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
 * [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
-
+* [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
@@ -148,7 +148,7 @@ However, on my Windows + Cygwin laptop, changing the permissions did not appear 
 After tearing my hair out some, I figured out how to successfully change the permissions and connect to the machine. :+1:
 See the problem screenshots and solution [in this comment.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201237692) 
 
-##### Errors while deploying Vagrant Box with EC2
+##### Errors while deploying and connecting to Vagrant Box with EC2
 
 I encountered multiple issues while exploring deployment of a Vagrant box to the EC2 Image. 
-See problems and solutions [here.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201246495)
+See problems and solutions [here](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201246495) and [here](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201709309).
