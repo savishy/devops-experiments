@@ -154,6 +154,10 @@ Now run:
 ansible-playbook playbook.yml
 ```
 
+*Note: the first run will ask you if you want to continue connecting.* 
+[See image.](https://cloud.githubusercontent.com/assets/13379978/14065117/4cd6fa6c-f43a-11e5-9d0d-70c8ff7a10c3.png)
+I have kept `StrictHostKeyChecking` enabled even though I have the option to disable that and make it truly hands-free. This is for security.
+
 *Customization*
 
 The following defaults are stored in the `roles/tomcat/defaults/main.yml` playbook. 
