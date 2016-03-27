@@ -3,6 +3,10 @@
     yum: name=java-1.7.0-openjdk update_cache=yes state=latest
     sudo: true
 
+  - name: install javac 
+    yum: name=java-1.7.0-openjdk-devel update_cache=yes state=latest
+    sudo: true
+
   - name: add group "tomcat"
     group: name=tomcat
     sudo: true
