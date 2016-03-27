@@ -66,6 +66,28 @@ The flow is as follows:
 3. The JUnit test results get parsed as a post-build step. 
 4. Upon successful build, the WAR is deployed to Tomcat (using [Jenkins Deploy Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Deploy+Plugin)). 
 
+Here is where some key Ansible-related files are located:
+
+```
+ansible-tower
+├── ansible.cfg   - ansible configuration
+├── hosts         - hosts file containing webservers group. Place EC2 hostname here.
+├── playbook.yml  - main playbook that configures dev environment.
+├── roles         - the main playbook executes different roles. 
+│   ├── apache
+│   ├── geerlingguy.java
+│   ├── geerlingguy.jenkins
+│   ├── jenkinsjobs
+│   │   └── templates
+│   │       ├── config.xml - jenkins job configuration XML.
+│   ├── mysql
+│   ├── tomcat    - this role takes care of tomcat configuration and startup.
+│   └── tools
+│       └── tasks
+│           └── main.yml
+└── Vagrantfile   - In order to start an Ansible Tower Instance.
+
+```
 
 <a name="mynotes"/>
 ## Setup Notes ##
