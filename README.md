@@ -155,7 +155,6 @@ ansible-playbook playbook.yml
 ```
 
 
-
 <a name="references"/>
 #### References
 
@@ -175,7 +174,8 @@ ansible-playbook playbook.yml
 [3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
 [4](http://docs.ansible.com/ansible/file_module.html),
 [5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration),
-[6](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+[6](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet),
+[7](http://stackoverflow.com/questions/3944157/is-tomcat-running)
 
 
 <a name="troubleshooting"/>
