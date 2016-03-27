@@ -1,9 +1,15 @@
 ---
 - name: setup environment
   hosts: webservers
+  vars: 
+    jenkins_http_port: 8095
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_become: true
   remote_user: ec2-user
   roles:
   - tools
+  - geerlingguy.jenkins
   - apache
   - mysql
   - tomcat

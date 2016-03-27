@@ -18,6 +18,9 @@
     command: chdir=/usr/share /bin/tar xvf {{ tomcat_download_dest }}/{{ tomcat_filename }}.tar.gz -C {{ tomcat_install_dest }} creates={{ tomcat_install_dest }}/{{ tomcat_filename }}
     sudo: true
 
+  - name: Symlink install directory
+    file: src={{ tomcat_download_dest }}/{{ tomcat_filename }} path=/usr/share/tomcat state=link
+
   - name: change permissions
     file: path={{ tomcat_install_dest }}/{{ tomcat_filename }} mode=0644
     sudo: true
@@ -25,6 +28,9 @@
   - name: Change ownership
     file: path={{ tomcat_install_dest }}/{{ tomcat_filename }} owner=tomcat group=tomcat state=directory recurse=yes
     sudo: true
+
+  - name: Change ownership of symlink
+    file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
   - name: Configure Tomcat server
     template: src=server.xml dest={{ tomcat_install_dest }}/{{ tomcat_filename }}/conf/
@@ -34,8 +40,15 @@
     template: src=tomcat-users.xml dest={{ tomcat_install_dest }}/{{ tomcat_filename }}/conf/
     notify: restart tomcat
 
+  - name: Install Tomcat init script
+    copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+
   - name: Start Tomcat
     service: name=tomcat state=started enabled=yes
+
+  - name: deploy iptables rules
+    template: src=iptables_save dest=/etc/sysconfig/iptables
+    notify: restart iptables
 
   - name: wait for tomcat to start
     wait_for: port={{ tomcat_http_port }}
