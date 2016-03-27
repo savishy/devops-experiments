@@ -119,9 +119,10 @@ vagrant up
 vagrant ssh
 ```
 
-1. This gives you credentials to Ansible Tower GUI as well as SSHing into the Tower Instance.
+1. The `vagrant ssh` command gives you credentials to Ansible Tower GUI as well as SSHing into the Tower Instance.
 ![image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
 * I did not have to use the GUI at all beyond initial exploration. 
+1. Note: On my machine, `vagrant up` throws the error described [here.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-202085369) I did not find time to solve this.
 1. My experiments were conducted with *Ansible Basic Tower*. The Enterprise tower license required a delay of 1 business day.
 3. I have used Vagrant to bring up Ansible Tower as per the Ansible docs.
 4. The first `vagrant up` caused some issues that I solved (see [troubleshooting](#troubleshooting)).
