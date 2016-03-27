@@ -49,7 +49,7 @@ With the setup in place:
 **Notes**
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
-2. A lesson I'd learned previously, which has now been reinforced: Windows can interfere with the development process. Always have a Linux box ready.
+2. I used my laptop running Windows. Given a choice I would have used Linux.
 3. Due to time constraints I was unable to complete the following
   1. control configuration of MySQL through Ansible
   2. Web load balancer
