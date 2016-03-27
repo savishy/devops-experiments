@@ -134,14 +134,22 @@ Details on Connecting to Instance:
 *Prerequisites*
 
 2. `devops.pem` should be placed at top level of repo.
-3. Permissions set to `0400`.
-4. [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins) needs installation as mentioned [here](http://codeheaven.io/an-introduction-to-ansible/). Run the command:
+3. Permissions set to `0400` otherwise SSH will throw errors.
+3. `ansible-tower/hosts` should contain the public DNS of the EC2 instance(s) you want to configure.
+  4. e.g. `ec2-12-34-56-78.ap-southeast-1.compute.amazonaws.com` 
+4. The Ansible Role [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins) needs installation as mentioned [here](http://codeheaven.io/an-introduction-to-ansible/). Run the command:
   5. `cd ansible-tower`
-  6. `ansible-galaxy install geerlingguy.jenkins -p ./roles/`
+  6. `ansible-galaxy install geerlingguy.jenkins -p ./roles/` (this will download the roles)
   7. Verify that the `roles` subdirectory now has 
 ```  
 roles/geerlingguy.java/
 roles/geerlingguy.jenkins/
+```
+
+Now run 
+
+```
+ansible-playbook playbook.yml
 ```
 
 
@@ -158,6 +166,7 @@ roles/geerlingguy.jenkins/
 * [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
 * [Maven Wrapper](https://github.com/takari/maven-wrapper)
 * [Ansible and Jenkins](http://codeheaven.io/an-introduction-to-ansible/)
+* [Ansible and Tomcat](https://github.com/ansible/ansible-examples/tree/master/tomcat-standalone)
 * [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
 * other: 
 [1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
@@ -199,3 +208,6 @@ See the problem screenshots and solution [in this comment.](https://github.com/s
 
 I encountered multiple issues while exploring deployment of a Vagrant box to the EC2 Image. 
 See problems and solutions [here](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201246495) and [here](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201709309).
+
+##### Error configuring iptables
+[See this comment.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-201994341)
