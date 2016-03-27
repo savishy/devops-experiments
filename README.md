@@ -3,7 +3,8 @@
 ##### Table of Contents  
 
 1. [Summary of Task](#summary)
-2. [My Notes](#mynotes)
+1. [Working Deployment](#workingdeployment)
+2. [Setup Notes](#mynotes)
   1. [Steps Followed](#stepsfollowed)
     1. [Ansible Tower](#ansibletower)
     2. [EC2 with Vagrant](#ec2vagrant)
@@ -42,13 +43,33 @@ With the setup in place:
 5. Feel free to use AWS and share the working installation URL also.
 6. Recommended tool for AWS : Vagrant
 
-<a name="mynotes"/>
-## My Notes ##
+<a name="workingdeployment"/>
+#### Working Deployment
 
-#### Introduction
+**Notes**
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
-2. A lesson I'd learned previously, which has now been reinforced: Windows can interfere with the development process. Always have a Linux box ready!
+2. A lesson I'd learned previously, which has now been reinforced: Windows can interfere with the development process. Always have a Linux box ready.
+3. Due to time constraints I was unable to complete the following
+  1. control configuration of MySQL through Ansible
+  2. Web load balancer
+
+**Details**
+
+1. The web application is deployed [here](http://ec2-54-179-177-22.ap-southeast-1.compute.amazonaws.com:8080/petclinic/). [See image](https://cloud.githubusercontent.com/assets/13379978/14065811/edd25bda-f455-11e5-99aa-77db26a7f75d.png).
+2. The Jenkins CI is located [here](http://ec2-54-179-177-22.ap-southeast-1.compute.amazonaws.com:8095/). 
+
+The flow is as follows:
+
+1. The job is set to poll the GitHub repository once every day.
+2. Upon detecting changes it executes the `./mvnw` command ([as documented](https://github.com/spring-projects/spring-petclinic/)).
+3. The JUnit test results get parsed as a post-build step. 
+4. Upon successful build, the WAR is deployed to Tomcat (using [Jenkins Deploy Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Deploy+Plugin)). 
+
+
+<a name="mynotes"/>
+## Setup Notes ##
+
 
 #### Time Tracking
 
@@ -69,11 +90,10 @@ With the setup in place:
 2. Configuration: 4h
 3. Troubleshooting: 5h
 
-*Day 3:*
+*Day 3: Creating a CI/CD pipeline, troubleshooting the full flow: 14h*
 
-1.
-2.
-3.
+1. Reading: 3h
+2. Configuration and Troubleshooting: 11h
 
 #### Choices made 
 
