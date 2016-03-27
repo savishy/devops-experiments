@@ -127,6 +127,24 @@ Details on Connecting to Instance:
 4. (Alternatively you can also SSH in)
 5. During my attempt, I encountered and solved several issues. (See [troubleshooting](#troubleshooting)).
 
+##### Configuring Dev Environment with Ansible
+
+1. The dev environment has Jenkins, Tomcat, MySQL etc all in one box. 
+
+*Prerequisites*
+
+2. `devops.pem` should be placed at top level of repo.
+3. Permissions set to `0400`.
+4. [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins) needs installation as mentioned [here](http://codeheaven.io/an-introduction-to-ansible/). Run the command:
+  5. `cd ansible-tower`
+  6. `ansible-galaxy install geerlingguy.jenkins -p ./roles/`
+  7. Verify that the `roles` subdirectory now has 
+```  
+roles/geerlingguy.java/
+roles/geerlingguy.jenkins/
+```
+
+
 
 <a name="references"/>
 #### References
