@@ -5,7 +5,9 @@
 1. [Summary of Task](#summary)
 2. [My Notes](#mynotes)
   1. [Steps Followed](#stepsfollowed)
+    1. [Ansible Tower](#ansibletower)
   2. [Troubleshooting](#troubleshooting)
+  3. [References](#references)
 
 <a name="summary"/>
 ## Summary of Task ##
@@ -25,25 +27,17 @@ Use Puppet / Chef / Ansible for the following setup
 With the setup in place:
 
 1. Make a continuous delivery (CD) pipeline using Jenkins, it should include CI Builds and other jobs neccessary for the software delivery lifecycle
-
 2. Create a DevOps Toolchain to completely automate the pipeline
- 
 3. Push a built WAR using Jenkins build pipeline into the VM
- 
 4. Also make sure that the location of tomcat and apache HTTPD should be flexible and controlled by Puppet/Chef/Ansible, in case no specific value is provided it should fall back to defaults
  
 **NOTES:**
  
 1. You can make any assumptions and be as innovative and creative as possible in your usage of tools for DevOps tool-chain
- 
 2. You are expected to implement a CD pipeline with no use of shell scripts
- 
 3. Check-in the complete project (cookbooks, manifests, Jenkins build definitions etc.) into a GitHub account and send us the repository location
- 
-4. Use the spring application https://github.com/spring-projects/spring-petclinic/ as source for the CI And CD implementations.
-
+4. Use the spring application https://github.com/spring-projects/spring-petclinic/ as source for the CI And CD implementations
 5. Feel free to use AWS and share the working installation URL also.
-
 6. Recommended tool for AWS : Vagrant
 
 <a name="mynotes"/>
@@ -52,7 +46,6 @@ With the setup in place:
 #### Introduction
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
-
 
 #### Time Tracking
 
@@ -67,28 +60,10 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 2. Configuration: 30m
 3. Troubleshooting: 2h
 
-Creating a Dev Environment with Ansible: 6h
-
-#### References
-
-* [Deploying on EC2 with Vagrant](http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/)
-* [Configuring Ansible Tower with Vagrant](https://www.ansible.com/tower-trial)
-* [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
-* [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
-* [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
-* [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
-* [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
-* [Maven Wrapper](https://github.com/takari/maven-wrapper)
-* [Ansible and Jenkins](http://codeheaven.io/an-introduction-to-ansible/)
-* [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
-* other: 
-[1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
-[3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
-[4](http://docs.ansible.com/ansible/file_module.html),
-[5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration)
-
-
-
+Creating a Dev Environment with Ansible: 12h
+1. Reading: 2h
+2. Configuration: 4h
+3. Troubleshooting: 4h
 
 #### Choices made 
 
@@ -101,7 +76,11 @@ Creating a Dev Environment with Ansible: 6h
 <a name="stepsfollowed"/>
 #### Steps Followed
 
+<a name="ansibletower"/>
 ##### Ansible Tower Installation
+
+
+
 
 1. Learned the basics of Vagrant, Ansible 
 2. Downloaded and installed Vagrant. 
@@ -132,6 +111,26 @@ Details:
 * m3.medium
 * AMI: ami-e90dc68a
 * Vagrant Box Used: [lattice/ubuntu-trusty-x64](https://atlas.hashicorp.com/lattice/boxes/ubuntu-trusty-64)
+
+<a name="references"/>
+#### References
+
+* [Deploying on EC2 with Vagrant](http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/)
+* [Configuring Ansible Tower with Vagrant](https://www.ansible.com/tower-trial)
+* [Search for Vagrant Boxes](https://atlas.hashicorp.com/boxes/search)
+* [Puppet Pre-install](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet)
+* [Ansible AWS Guide](http://docs.ansible.com/ansible/guide_aws.html)
+* [Configuring vagrant-aws](https://github.com/mitchellh/vagrant-aws)
+* [Connecting to AWS Instances from Windows](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
+* [Maven Wrapper](https://github.com/takari/maven-wrapper)
+* [Ansible and Jenkins](http://codeheaven.io/an-introduction-to-ansible/)
+* [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
+* other: 
+[1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
+[3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
+[4](http://docs.ansible.com/ansible/file_module.html),
+[5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration)
+
 
 <a name="troubleshooting"/>
 ## Troubleshooting
