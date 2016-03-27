@@ -148,11 +148,43 @@ roles/geerlingguy.java/
 roles/geerlingguy.jenkins/
 ```
 
-Now run 
+Now run:
 
 ```
 ansible-playbook playbook.yml
 ```
+
+*Customization*
+
+The following defaults are stored in the `roles/tomcat/defaults/main.yml` playbook. 
+
+```
+# tomcat download URL. override this as well as tomcat_filename, to download a different tomcat version.
+tomcat_url: http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz
+# the filename of the file downloaded from above URL.
+tomcat_filename: apache-tomcat-7.0.61
+# temporary download destination.
+tomcat_download_dest: /tmp/
+# install location of tomcat.
+tomcat_install_dest: /usr/share/
+# tomcat ports
+tomcat_http_port: 8080
+tomcat_https_port: 8443
+# tomcat user credentials
+tomcat_admin_username: admin
+tomcat_admin_password: admin
+```
+
+One can override these variables as per the Playbook docs to override these default values.
+
+E.g. `ansible-tower/playbook.yml` overrides the Jenkins Port default (as decided by `geerlingguy/jenkins`):
+
+```
+  vars:
+    jenkins_http_port: 8095
+```
+
+
 
 
 <a name="references"/>
