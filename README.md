@@ -3,7 +3,8 @@
 ##### Table of Contents  
 
 1. [Summary of Task](#summary)
-2. [My Notes](#mynotes)
+1. [Working Deployment](#workingdeployment)
+2. [Setup Notes](#mynotes)
   1. [Steps Followed](#stepsfollowed)
     1. [Ansible Tower](#ansibletower)
     2. [EC2 with Vagrant](#ec2vagrant)
@@ -20,18 +21,18 @@ Set up one click deploy and provisioning of an environment with all neccessary e
 
 Use Puppet / Chef / Ansible for the following setup
 
-1. Apache tomcat server
+1. Apache tomcat server :white_check_mark: 
 2. Mysql Database, with configuration controlled through the tool
-3. Apache Http Webserver
-4. Web loadbalancer on Apache Server for Tomcat.
-5. Jenkins for CI
+3. Apache Http Webserver :white_check_mark: 
+4. Web loadbalancer on Apache Server for Tomcat. 
+5. Jenkins for CI :white_check_mark: 
  
 With the setup in place:
 
-1. Make a continuous delivery (CD) pipeline using Jenkins, it should include CI Builds and other jobs neccessary for the software delivery lifecycle
-2. Create a DevOps Toolchain to completely automate the pipeline
-3. Push a built WAR using Jenkins build pipeline into the VM
-4. Also make sure that the location of tomcat and apache HTTPD should be flexible and controlled by Puppet/Chef/Ansible, in case no specific value is provided it should fall back to defaults
+1. Make a continuous delivery (CD) pipeline using Jenkins, it should include CI Builds and other jobs neccessary for the software delivery lifecycle :white_check_mark: 
+2. Create a DevOps Toolchain to completely automate the pipeline :white_check_mark: 
+3. Push a built WAR using Jenkins build pipeline into the VM :white_check_mark: 
+4. Also make sure that the location of tomcat and apache HTTPD should be flexible and controlled by Puppet/Chef/Ansible, in case no specific value is provided it should fall back to defaults :white_check_mark: 
  
 **NOTES:**
  
@@ -42,13 +43,55 @@ With the setup in place:
 5. Feel free to use AWS and share the working installation URL also.
 6. Recommended tool for AWS : Vagrant
 
-<a name="mynotes"/>
-## My Notes ##
+<a name="workingdeployment"/>
+#### Working Deployment
 
-#### Introduction
+**Notes**
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
-2. A lesson I'd learned previously, which has now been reinforced: Windows can interfere with the development process. Always have a Linux box ready!
+2. I used my laptop running Windows. Given a choice I would have used Linux.
+3. Due to time constraints I was unable to complete the following
+  1. control configuration of MySQL through Ansible
+  2. Web load balancer
+
+**Details**
+
+1. The web application is deployed [here](http://ec2-54-179-177-22.ap-southeast-1.compute.amazonaws.com:8080/petclinic/). [See image](https://cloud.githubusercontent.com/assets/13379978/14065811/edd25bda-f455-11e5-99aa-77db26a7f75d.png).
+2. The Jenkins CI is located [here](http://ec2-54-179-177-22.ap-southeast-1.compute.amazonaws.com:8095/). 
+
+The flow is as follows:
+
+1. The job is set to poll the GitHub repository once every day.
+2. Upon detecting changes it executes the `./mvnw` command ([as documented](https://github.com/spring-projects/spring-petclinic/)).
+3. The JUnit test results get parsed as a post-build step. 
+4. Upon successful build, the WAR is deployed to Tomcat (using [Jenkins Deploy Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Deploy+Plugin)). 
+
+Here is where some key Ansible-related files are located:
+
+```
+ansible-tower
+├── ansible.cfg   - ansible configuration
+├── hosts         - hosts file containing webservers group. Place EC2 hostname here.
+├── playbook.yml  - main playbook that configures dev environment.
+├── roles         - the main playbook executes different roles. 
+│   ├── apache
+│   ├── geerlingguy.java
+│   ├── geerlingguy.jenkins
+│   ├── jenkinsjobs
+│   │   └── templates
+│   │       ├── config.xml - jenkins job configuration XML.
+│   ├── mysql
+│   ├── tomcat    - this role takes care of tomcat configuration and startup.
+│   └── tools
+│       └── tasks
+│           └── main.yml
+└── Vagrantfile   - In order to start an Ansible Tower Instance.
+
+```
+
+<a name="mynotes"/>
+## Setup Notes ##
+
 
 #### Time Tracking
 
@@ -69,11 +112,10 @@ With the setup in place:
 2. Configuration: 4h
 3. Troubleshooting: 5h
 
-*Day 3:*
+*Day 3: Creating a CI/CD pipeline, troubleshooting the full flow: 14h*
 
-1.
-2.
-3.
+1. Reading: 3h
+2. Configuration and Troubleshooting: 11h
 
 #### Choices made 
 
@@ -99,9 +141,10 @@ vagrant up
 vagrant ssh
 ```
 
-1. This gives you credentials to Ansible Tower GUI as well as SSHing into the Tower Instance.
+1. The `vagrant ssh` command gives you credentials to Ansible Tower GUI as well as SSHing into the Tower Instance.
 ![image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
 * I did not have to use the GUI at all beyond initial exploration. 
+1. Note: On my machine, `vagrant up` throws the error described [here.](https://github.com/savishy/devops-experiments/issues/1#issuecomment-202085369) I did not find time to solve this.
 1. My experiments were conducted with *Ansible Basic Tower*. The Enterprise tower license required a delay of 1 business day.
 3. I have used Vagrant to bring up Ansible Tower as per the Ansible docs.
 4. The first `vagrant up` caused some issues that I solved (see [troubleshooting](#troubleshooting)).
