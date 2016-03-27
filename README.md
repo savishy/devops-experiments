@@ -200,6 +200,9 @@ E.g. `ansible-tower/playbook.yml` overrides the Jenkins Port default (as decided
 * [Maven Wrapper](https://github.com/takari/maven-wrapper)
 * [Ansible and Jenkins](http://codeheaven.io/an-introduction-to-ansible/)
 * [Ansible and Tomcat](https://github.com/ansible/ansible-examples/tree/master/tomcat-standalone)
+* Tomcat: [1](http://www.mkyong.com/tomcat/tomcat-default-administrator-password/)
+* [Jenkins Deploy Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Deploy+Plugin)
+* [Jenkins Config and Deployment](https://www.okta.com/blog/2012/04/simple-jenkins-configuration-and-deployment/)
 * [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
 * other: 
 [1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
