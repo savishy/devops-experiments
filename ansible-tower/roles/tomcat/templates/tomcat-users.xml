@@ -32,7 +32,8 @@
 
   <!-- Vish: apparently a role name needs to be defined -->
   <role rolename="manager-gui" />
-  <user username="{{ tomcat_admin_username }}" password="{{ tomcat_admin_password }}" roles="manager-gui" />
+  <role rolename="manager-script"/>
+  <user username="{{ tomcat_admin_username }}" password="{{ tomcat_admin_password }}" roles="manager-gui,manager-script" />
 
 <!--
   <role rolename="tomcat"/>

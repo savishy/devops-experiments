@@ -1,0 +1,22 @@
+---
+  - name: create jenkins jobs folder
+    file: path=/var/lib/jenkins/jobs state=directory owner=jenkins group=jenkins mode=0777
+    sudo: true
+
+  - name: create jenkins build-site folder
+    file: path=/var/lib/jenkins/jobs/build-site state=directory owner=jenkins group=jenkins mode=0777
+    sudo: true
+
+  - name: copy jenkins job configuration
+    template: src=config.xml dest=/var/lib/jenkins/jobs/build-site/
+
+  - name: change permissions
+    shell: /bin/chmod -R 777 /var/lib/jenkins/jobs/
+    sudo: true
+
+  - name: Change ownership
+    shell: /bin/chown -R jenkins:jenkins /var/lib/jenkins/jobs
+    sudo: true
+
+  - name: restart jenkins
+    service: name=jenkins state=restarted
