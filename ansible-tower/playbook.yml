@@ -6,9 +6,14 @@
     ansible_become_user: root
     ansible_become_method: sudo
     ansible_become: true
+    jenkins_plugins:
+    - git
+    - deploy
+    - ssh
   remote_user: ec2-user
   roles:
   - tools
   - geerlingguy.jenkins
   - apache
   - mysql
+  - tomcat

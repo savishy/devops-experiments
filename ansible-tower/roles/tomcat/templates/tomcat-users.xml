@@ -30,6 +30,8 @@
   <!.. ..> that surrounds them.
 -->
 
+  <!-- Vish: apparently a role name needs to be defined -->
+  <role rolename="manager-gui" />
   <user username="{{ tomcat_admin_username }}" password="{{ tomcat_admin_password }}" roles="manager-gui" />
 
 <!--
