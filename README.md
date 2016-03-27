@@ -6,6 +6,7 @@
 2. [My Notes](#mynotes)
   1. [Steps Followed](#stepsfollowed)
     1. [Ansible Tower](#ansibletower)
+    2. [EC2 with Vagrant](#ec2vagrant)
   2. [Troubleshooting](#troubleshooting)
   3. [References](#references)
 
@@ -46,32 +47,42 @@ With the setup in place:
 #### Introduction
 
 1. It was my first exposure to nearly all the tools required in the assignment, so this was a great learning experience. 
+2. A lesson I'd learned previously, which has now been reinforced: Windows can interfere with the development process. Always have a Linux box ready!
 
 #### Time Tracking
 
-Creating a local Ansible Tower VM with Vagrant: 4h
+*Day 1: Creating a local Ansible Tower VM with Vagrant: 4h*
 
 1. Reading: 1h
 2. Downloads and Installs: 3h
 
-Creating and Configuring Amazon EC2 Image with Vagrant: 3h
+*Day 1: Creating and Configuring Amazon EC2 Image with Vagrant: 4h*
 
 1. Reading: 30m
 2. Configuration: 30m
-3. Troubleshooting: 2h
+3. Troubleshooting: 3h
 
-Creating a Dev Environment with Ansible: 10h
-1. Reading: 2h
+*Day 1/2: Creating a Dev Environment with Ansible: 12h*
+
+1. Reading: 3h
 2. Configuration: 4h
-3. Troubleshooting: 4h
+3. Troubleshooting: 5h
+
+*Day 3:*
+
+1.
+2.
+3.
 
 #### Choices made 
 
 1. Of Puppet, Chef and Ansible, I chose Ansible. 
-2. Ideally I would have tried out all 3 tools and made an educated choice. 
-3. But in the given time for the assignment, the few reviews I read seemed to indicate similar attributes for all 3 tools. Thus my choice.
-4. An additional weighting factor in favor of Ansible was that it seems easy to configure vagrant with an Ansible tower. 
-5. [I read that](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet) Puppet Master does not work on Windows. Given that my primary machine at home is Windows I discarded Puppet. 
+  1. Ideally I would have tried out all 3 tools and made an educated choice. 
+  3. But in the given time for the assignment, the few reviews I read seemed to indicate similar attributes for all 3 tools. Thus my choice.
+  4. An additional weighting factor in favor of Ansible was that it seems easy to configure vagrant with an Ansible tower. 
+  5. [I read that](https://docs.puppetlabs.com/puppet/3.8/reference/pre_install.html#standalone-puppet) Puppet Master does not work on Windows. Given that my primary machine at home is Windows I discarded Puppet. 
+2. I chose [geerlingguy/jenkins](https://github.com/geerlingguy/ansible-role-jenkins) for the relative ease of configuring Jenkins as an Ansible role. 
+3. I set up Jenkins on the same machine as the web server.
 
 <a name="stepsfollowed"/>
 #### Steps Followed
@@ -95,26 +106,27 @@ vagrant ssh
 4. The first `vagrant up` caused some issues that I solved (see [troubleshooting](#troubleshooting)).
 4. [See image of Ansible Dashboard.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
 
+<a name="ec2vagrant"/>
 ##### Deploying Amazon EC2 with Vagrant
-
-1. Created an EC2 instance 
-  1. To avail of the free tier, I created and launched a `t1.micro` instance.
-  2. [See instance details.](https://cloud.githubusercontent.com/assets/13379978/14042720/9e06ccb2-f2a2-11e5-9dcf-69204bba0f64.png)
-  3. [See details on connecting to the instance.](https://cloud.githubusercontent.com/assets/13379978/14042786/403ff40e-f2a3-11e5-9e84-b848c04d1233.png)
-  4. Downloaded the PEM File (this is in the top-level of the repository, `devops.pem`).
-2. Installed the `vagrant-aws` plugin. 
-3. Configured a Vagrantfile for the AWS Instance (see folder `ec2-i-f9eaa477` in this repository). 
-4. Using `vagrant up --provider=aws`, started up the instance. 
-5. Encountered several issues and solved them. (See [troubleshooting](#troubleshooting)).
-
-Finally, an EC2 `m3.medium` instance was successfully launched. 
-[See image.](https://cloud.githubusercontent.com/assets/13379978/14044040/84e61332-f2b1-11e5-9415-3be0d2e535ed.png)
 
 Details:
 
 * m3.medium
+* Region: Singapore
 * AMI: ami-e90dc68a
 * Vagrant Box Used: [lattice/ubuntu-trusty-x64](https://atlas.hashicorp.com/lattice/boxes/ubuntu-trusty-64)
+
+[See image of successful launch.](https://cloud.githubusercontent.com/assets/13379978/14044040/84e61332-f2b1-11e5-9415-3be0d2e535ed.png)
+
+Details on Connecting to Instance:
+
+1. Make sure `vagrant-aws` plugin is installed.
+2. Place the `devops.pem` at the top of the repository. 
+2. `cd ec2-i-f9eaa477`
+3. `vagrant up --provider=aws`
+4. (Alternatively you can also SSH in)
+5. During my attempt, I encountered and solved several issues. (See [troubleshooting](#troubleshooting)).
+
 
 <a name="references"/>
 #### References
@@ -133,7 +145,8 @@ Details:
 [1](http://stackoverflow.com/questions/5109112/how-to-deploy-a-war-file-in-tomcat-7), [2](https://github.com/ansible/ansible-examples), 
 [3](http://docs.ansible.com/ansible/playbooks_roles.html#role-default-variables),
 [4](http://docs.ansible.com/ansible/file_module.html),
-[5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration)
+[5](http://docs.ansible.com/ansible/intro_configuration.html#getting-the-latest-configuration),
+[6](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
 <a name="troubleshooting"/>
