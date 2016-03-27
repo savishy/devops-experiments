@@ -60,7 +60,7 @@ Creating and Configuring Amazon EC2 Image with Vagrant: 3h
 2. Configuration: 30m
 3. Troubleshooting: 2h
 
-Creating a Dev Environment with Ansible: 12h
+Creating a Dev Environment with Ansible: 10h
 1. Reading: 2h
 2. Configuration: 4h
 3. Troubleshooting: 4h
@@ -79,17 +79,21 @@ Creating a Dev Environment with Ansible: 12h
 <a name="ansibletower"/>
 ##### Ansible Tower Installation
 
+Within the repo, run the following (assuming Vagrant installed):
 
+```
+cd ansible-tower
+vagrant up
+vagrant ssh
+```
 
-
-1. Learned the basics of Vagrant, Ansible 
-2. Downloaded and installed Vagrant. 
-3. Obtained a trial license for *Ansible Basic Tower. Ansible Enterprise tower required a delay of 1 business day to obtain a license.*
-2. Created an Ansible Tower VM as per the documentation for Ansible Tower Trial. 
-3. This downloaded the Vagrant Box - which is basically a VirtualBox Image - as well as VirtualBox itself. 
-4. The VM was created on my machine. After starting it with `vagrant up` and solving some issues (see [troubleshooting](#troubleshooting)), I SSHed to it. [See image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
-3. Started the Ansible Tower UI at https://10.42.0.42/ and the credentials provided. Plugged in my trial license key. 
-4. Dashboard showed up as expected :+1: [See image.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
+1. This gives you credentials to Ansible Tower GUI as well as SSHing into the Tower Instance.
+![image of successful ssh.](https://cloud.githubusercontent.com/assets/13379978/14041895/1f19ad90-f29b-11e5-9c70-c4429e773de7.png)
+* I did not have to use the GUI at all beyond initial exploration. 
+1. My experiments were conducted with *Ansible Basic Tower*. The Enterprise tower license required a delay of 1 business day.
+3. I have used Vagrant to bring up Ansible Tower as per the Ansible docs.
+4. The first `vagrant up` caused some issues that I solved (see [troubleshooting](#troubleshooting)).
+4. [See image of Ansible Dashboard.](https://cloud.githubusercontent.com/assets/13379978/14042281/8134348e-f29e-11e5-9796-a826143f2d9d.png)
 
 ##### Deploying Amazon EC2 with Vagrant
 
