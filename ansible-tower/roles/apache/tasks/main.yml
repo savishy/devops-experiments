@@ -1,4 +1,0 @@
----
-  - name: install apache
-    yum: name=httpd update_cache=yes state=latest
-    sudo: true
