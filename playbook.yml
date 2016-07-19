@@ -1,0 +1,7 @@
+---
+- name: setup environment
+  hosts: default
+  vars:
+    remote_user: ec2-user
+    roles:
+      - apache
