@@ -1,7 +1,15 @@
 ---
-- name: setup environment
+- name: setup apache
+
+  # name of the host to run this on.
   hosts: default
   vars:
-    remote_user: ec2-user
-    roles:
-      - apache
+
+    # execute all commands as root
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_become: true
+
+  roles:
+    # Roles to be executed. Each role has an associated folder under "roles" dir.
+  - apache
