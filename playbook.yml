@@ -1,5 +1,5 @@
 ---
-- name: setup apache
+- name: setup docker and run Dockerfile
 
   # name of the host to run this on.
   hosts: default
@@ -11,5 +11,5 @@
     ansible_become: true
 
   roles:
-    # Roles to be executed. Each role has an associated folder under "roles" dir.
-  - apache
+    # Only one role: Docker
+  - docker
