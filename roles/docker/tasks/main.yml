@@ -30,6 +30,12 @@
     state: present
   notify: start docker service
 
+- name: add ec2 user to docker group
+  # command: usermod -a -G docker ec2-user
+  user:
+    name: ec2-user
+    groups: docker
+
 - name: restart docker service
   service:
     name: docker
@@ -43,3 +49,6 @@
     name: tomcat-webapp-container
     image: tomcat-webapp
     state: started
+    ports: 8080:8080
+    exposed: 8080
+    recreate: true
