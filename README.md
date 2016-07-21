@@ -52,7 +52,24 @@ appropriate recipes to setup Docker).
 
 ### Docker ###
 
-Docker does the heavy lifting of configuring the application environment. 
+Docker does the heavy lifting of configuring the application environment.
 
 Since the application (in this case, a tomcat server) is Dockerized, it brings
 all the scalability advantages of Docker.
+
+
+## Troubleshooting
+
+1. **Tomcat Ports and EC2 Security Groups**
+
+Apparently both ports 80 and 8080 have to be exposed in the EC2 Security
+Group.
+
+1. **`service docker start`**
+
+In Ansible Playbook, I had trouble restarting the docker service using handler (i.e
+the guy that takes care of restarting the docker service).
+
+Ultimately I just removed the `handler` approach completely and inlined the
+step that restarts docker.
+
