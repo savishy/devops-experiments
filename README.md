@@ -1,7 +1,12 @@
 # DevOps Experiments (Attempt 2) #
 
 This branch (`attempt-2`) deals with a second attempt at solving the DevOps
-assignment. 
+assignment.
+
+1. To run this type: `vagrant up --provider=aws`.
+1. Then go to your AWS management console and wait for the instance to come
+   up. Afterward, use the public DNS address of the instance with `:8080` to
+   launch the web application.
 
 ## Summary ##
 
