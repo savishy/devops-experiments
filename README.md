@@ -15,15 +15,18 @@ What's different from the `master` branch:
 1. The `Vagrantfile` deals with provisioning of an EC2 instance *as well as
    running an Ansible playbook.* (Previously I was launching the Ansible
    playbook separately)
+2. The Ansible Playbook  **configures the environment on the host to be able
+   to launch Docker containers.**
+3. The Docker containers encapsulate building and running the application.
 
-## Vagrant ##
+### Vagrant ###
 
 Details about Vagrantfile
 
 1. All sensitive data is retrieved from environment variables and stored *out
    of the Vagrantfile*. So to run `vagrant up --provider=aws` the following
    environment variables should be set:
-   
+
    ```
    AWS_KEYPAIR_NAME: name of an AWS keypair
    AWS_ACCESS_KEY: your AWS Access Key
@@ -57,10 +60,34 @@ appropriate recipes to setup Docker).
 
 ### Docker ###
 
-Docker does the heavy lifting of configuring the application environment.
+Docker does the heavy lifting of building and running the application.
+
+There are two Docker containers:
+
+1. A Docker container running tomcat.
+2. A Docker container running Jenkins.
+
+
+**Docker Jenkins**:
+
+The Jenkins container listens to commits to the
+[Pet Clinic Github repository](http://github.com/spring-projects/spring-petclinic).
+
+When commits are made to the repository, a WAR is automatically built and
+tested.
+
+If tests pass, the WAR is deployed to the running tomcat container.
+
+**Docker Tomcat**:
+
+This is basically a Tomcat image (for now). Upon initial launch, it runs
+nothing. When the first Jenkins build is made, the application becomes accessible.
 
 Since the application (in this case, a tomcat server) is Dockerized, it brings
 all the scalability advantages of Docker.
+
+
+
 
 
 ## Troubleshooting

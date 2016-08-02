@@ -8,7 +8,6 @@
     gpgcheck: yes
     gpgkey: https://yum.dockerproject.org/gpg
 
-
     # update yum
 - name: yum update
   yum:
@@ -40,15 +39,3 @@
   service:
     name: docker
     state: restarted
-
-- name: build docker image if needed
-  command: docker build -t tomcat-webapp /vagrant/tomcat-webapp
-
-- name: run docker container
-  docker_container:
-    name: tomcat-webapp-container
-    image: tomcat-webapp
-    state: started
-    ports: 8080:8080
-    exposed: 8080
-    recreate: true

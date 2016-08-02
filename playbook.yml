@@ -12,4 +12,7 @@
 
   roles:
     # Only one role: Docker
-  - docker
+  - install_docker
+  - docker_jenkins
+  - docker_tomcat
+
