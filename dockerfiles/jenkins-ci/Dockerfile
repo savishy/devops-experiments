@@ -2,6 +2,11 @@ FROM jenkins:2.7.1
 # TODO jenkins security
 #ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS --httpPort=8081
+
+# fix for StreamCorruptedException when running Jenkins CLI
+# https://issues.jenkins-ci.org/browse/JENKINS-35197
+ENV JAVA_OPTS "-Djava.awt.headless=true -Dhudson.diyChunking=false"
+
 ADD plugins.txt /usr/share/jenkins/ref/plugins.txt
 
 # create job config
