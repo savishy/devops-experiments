@@ -134,7 +134,18 @@ daemon running on the host.*
    
    *Security Note: `0.0.0.0` [is insecure](http://stackoverflow.com/a/26029365/682912).*
 
-
+1. The next issue is how to access the daemon inside a container. 
+   The container should be started by bind-mounting the Docker socket as
+   `docker run -v /var/run/docker.sock:/var/run/docker.sock ...`
+   
+   Now, locate the ip address of the host from within the container. 
+   [Use this reference](http://stackoverflow.com/a/31328031/682912).
+   
+   Now verify that you can access the host from within the container using
+   `curl http://172.17.0.1/info` (this is equivalent to running `docker info`
+   on the host).
+   
+   Configure Jenkins Global Configuration ([hit apply!](http://stackoverflow.com/a/38541578/682912))
 
 
 
