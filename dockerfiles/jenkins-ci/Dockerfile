@@ -1,4 +1,16 @@
 FROM jenkins:2.7.1
+
+# install docker on Jenkins container
+USER root
+RUN apt-get update
+RUN apt-get install -y apt-transport-https ca-certificates lxc iptables
+RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+RUN echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update
+RUN apt-get install -y docker.io
+RUN usermod -aG docker jenkins
+USER jenkins
+
 # TODO jenkins security
 #ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS --httpPort=8081
@@ -37,4 +49,3 @@ WORKDIR /usr/share/jenkins/ref/plugins
 RUN wget http://updates.jenkins-ci.org/download/plugins/script-security/1.13/script-security.hpi
 RUN wget http://updates.jenkins-ci.org/download/plugins/junit/1.2/junit.hpi
 RUN wget http://updates.jenkins-ci.org/download/plugins/matrix-project/1.6/matrix-project.hpi
-
