@@ -1,5 +1,3 @@
 FROM tomcat:8.0
-RUN apt-get update -y
-RUN apt-get install -y apache2
-RUN service apache2 start
+ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 EXPOSE 8080
