@@ -70,38 +70,73 @@ There are two Docker containers:
 
 **Docker Jenkins**:
 
-The Jenkins container listens to commits to the
+1. The Jenkins container listens to commits to the
 [Pet Clinic Github repository](http://github.com/spring-projects/spring-petclinic).
-
-When commits are made to the repository, a WAR is automatically built and
+1. When commits are made to the repository, a WAR is automatically built and
 tested.
 
-If tests pass, the WAR is deployed to the running tomcat container.
+If tests pass, a Docker image is built containing
 
-**Docker Tomcat**:
-
-This is basically a Tomcat image (for now). Upon initial launch, it runs
-nothing. When the first Jenkins build is made, the application becomes accessible.
-
-Since the application (in this case, a tomcat server) is Dockerized, it brings
-all the scalability advantages of Docker.
+* tomcat
+* the application WAR
+* appropriate configs for tomcat.
 
 
-
-
-
-## Troubleshooting
+## Troubleshooting and Notes
 
 1. **Tomcat Ports and EC2 Security Groups**
 
 Apparently both ports 80 and 8080 have to be exposed in the EC2 Security
 Group.
 
-1. **`service docker start`**
+1. **Starting Docker Service in Ansible**
 
 In Ansible Playbook, I had trouble restarting the docker service using handler (i.e
 the guy that takes care of restarting the docker service).
 
 Ultimately I just removed the `handler` approach completely and inlined the
 step that restarts docker.
+
+1. **Using Jenkins to build Docker Images**
+
+*References*
+
+The links below are good for some light reading.
+
+1. http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+1. Unofficial Docker-in-Docker image https://github.com/jpetazzo/dind
+1. Official Docker-in-Docker image https://hub.docker.com/_/docker/
+1. https://forums.docker.com/t/using-docker-in-a-dockerized-jenkins-container/322/2
+1. Configuring Docker Daemon on Ubuntu 15.04 http://nknu.net/how-to-configure-docker-on-ubuntu-15-04/
+
+* The Jenkins Docker Container is supposed to create Docker images.
+* This means it needs to have access to the Docker Daemon.
+* The initial approach would be to install Docker *within this Docker
+  Container.*
+* But
+  [research tells me](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+  this is a bad thing in a lot of ways.
+
+So, the recommended approach is for *Jenkins to be able to connect to Docker
+daemon running on the host.*
+
+1. First start Docker as a daemon using
+   [this guide for Ubuntu 15 and above.](http://nknu.net/how-to-configure-docker-on-ubuntu-15-04/)
+
+   Note: this will start Docker Daemon with options `-H tcp://0.0.0.0:2375 -H
+   unix:///var/run/docker.sock`.
+   
+   Check `systemctl status docker`. The logs should show something like 
+   ```
+   level=info msg="API listen on [::]:2375"
+   ```
+   Which indicates that Docker Daemon is listening on port 2375.
+   
+   *Security Note: `0.0.0.0` [is insecure](http://stackoverflow.com/a/26029365/682912).*
+
+
+
+
+
+
 
