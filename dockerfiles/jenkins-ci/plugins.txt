@@ -1,6 +1,6 @@
 # deps for credentials
 icon-shim:2.0.2
-credentials:1.21
+credentials:1.22
 workflow-step-api:1.14.2
 maven-plugin:2.7.1
 mailer:1.16
@@ -21,3 +21,10 @@ git:2.5.3
 
 # deploy to tomcat
 deploy:1.10
+
+# dependencies for docker build step
+authentication-tokens:1.1
+docker-commons:1.2
+
+# docker
+docker-build-step:1.35

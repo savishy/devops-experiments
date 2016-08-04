@@ -8,7 +8,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/spring-projects/spring-petclinic</url>
+        <url>https://github.com/savishy/spring-petclinic</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -18,7 +18,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <browser class="hudson.plugins.git.browser.GithubWeb">
-      <url>https://github.com/spring-projects/spring-petclinic/</url>
+      <url>https://github.com/savishy/spring-petclinic/</url>
     </browser>
     <submoduleCfg class="list"/>
     <extensions/>
@@ -39,6 +39,18 @@
       <command>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ./mvnw install</command>
     </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &quot;--copy petclinic WAR to docker workspace&quot;
+cp -v target/petclinic.war docker/</command>
+    </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
+        <dockerFolder>$WORKSPACE/docker</dockerFolder>
+        <imageTag>$BUILD_NUMBER</imageTag>
+        <noCache>false</noCache>
+        <rm>true</rm>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
