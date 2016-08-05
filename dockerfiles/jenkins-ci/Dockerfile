@@ -11,8 +11,8 @@ RUN apt-get install -y docker.io
 RUN usermod -aG docker jenkins
 USER jenkins
 
-# TODO jenkins security
-#ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
+# Jenkins Port
+# TODO jenkins security needs to be set with HTTPS, using JENKINS_OPTS
 ENV JENKINS_OPTS --httpPort=8081
 
 # fix for StreamCorruptedException when running Jenkins CLI
@@ -25,8 +25,9 @@ ADD plugins.txt /usr/share/jenkins/ref/plugins.txt
 USER jenkins
 RUN mkdir -p /var/jenkins_home/jobs/petclinic-build/
 # copy job config as root (no other way)
-
-ADD config.xml /var/jenkins_home/jobs/petclinic-build/config.xml
+COPY config.xml /var/jenkins_home/jobs/petclinic-build/config.xml
+COPY credentials.xml  /var/jenkins_home/
+COPY org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml /var/jenkins_home/
 
 # TODO cannot figure out how to copy and change permissions.
 # Open issues on Docker indicate this is a bug.
@@ -42,7 +43,6 @@ RUN echo 2.7.1 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVers
 
 # install needed plugins 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
-
 
 # unless these HPIs are present, dependencies are not satisfied and above plugins are not installed.
 WORKDIR /usr/share/jenkins/ref/plugins
