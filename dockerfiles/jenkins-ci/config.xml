@@ -46,9 +46,20 @@ cp -v target/petclinic.war docker/</command>
     <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
       <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
         <dockerFolder>$WORKSPACE/docker</dockerFolder>
-        <imageTag>$BUILD_NUMBER</imageTag>
+        <imageTag>savishy/tomcat-petclinic:$BUILD_NUMBER</imageTag>
         <noCache>false</noCache>
         <rm>true</rm>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.PushImageCommand">
+        <dockerRegistryEndpoint plugin="docker-commons@1.2">
+          <url>https://index.docker.io/v1/</url>
+          <credentialsId>8301e62d-4eac-4abc-a2c1-fb5ed00aef0e</credentialsId>
+        </dockerRegistryEndpoint>
+        <image></image>
+        <tag>savishy/tomcat-petclinic:$BUILD_NUMBER</tag>
+        <registry></registry>
       </dockerCmd>
     </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>
