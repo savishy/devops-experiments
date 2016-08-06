@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>copies the WAR file output from petclinic-build and creates a Docker Image.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.5.3">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>http://github.com/savishy/devops-experiments</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/attempt-2</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <browser class="hudson.plugins.git.browser.GithubWeb">
+      <url>http://github.com/savishy/devops-experiments</url>
+    </browser>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>petclinic-build, </upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+      <project>petclinic-build</project>
+      <filter>**/target/petclinic.war</filter>
+      <target>dockerfiles/tomcat-webapp/</target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
+        <dockerFolder>$WORKSPACE/dockerfiles/tomcat-webapp</dockerFolder>
+        <imageTag>savishy/tomcat-petclinic:$BUILD_NUMBER</imageTag>
+        <noCache>false</noCache>
+        <rm>false</rm>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.PushImageCommand">
+        <dockerRegistryEndpoint plugin="docker-commons@1.4.0">
+          <url>https://index.docker.io/v1/</url>
+        </dockerRegistryEndpoint>
+        <image>savishy/tomcat-petclinic</image>
+        <tag>$BUILD_NUMBER</tag>
+        <registry></registry>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

@@ -28,3 +28,6 @@ docker-commons:1.4.0
 
 # docker
 docker-build-step:1.35
+
+# copy-artifact
+copyartifact:1.38.1
