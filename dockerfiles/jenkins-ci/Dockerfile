@@ -1,51 +1,43 @@
-FROM jenkins:2.7.1
+FROM ubuntu:16.04
 
-# install docker on Jenkins container
-USER root
-RUN apt-get update
-RUN apt-get install -y apt-transport-https ca-certificates lxc iptables
-RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-RUN echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update
-RUN apt-get install -y docker.io
-RUN usermod -aG docker jenkins
-USER jenkins
+# install common packages
+RUN apt-get update -qqy
+RUN apt-get install -y wget software-properties-common curl
 
-# Jenkins Port
-# TODO jenkins security needs to be set with HTTPS, using JENKINS_OPTS
-ENV JENKINS_OPTS --httpPort=8081
-
-# fix for StreamCorruptedException when running Jenkins CLI
-# https://issues.jenkins-ci.org/browse/JENKINS-35197
+# env vars
+ENV JENKINS_HOME /var/lib/jenkins
 ENV JAVA_OPTS "-Djava.awt.headless=true -Dhudson.diyChunking=false"
-
-ADD plugins.txt /usr/share/jenkins/ref/plugins.txt
+ENV JENKINS_OPTS "--httpPort=8080"
+# install Jenkins
+RUN wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
+RUN sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN apt-get update -qqy --allow-unauthenticated
+RUN apt-get install -y jenkins
 
 # create job config
-USER jenkins
-RUN mkdir -p /var/jenkins_home/jobs/petclinic-build/
+RUN mkdir -p $JENKINS_HOME/ref $JENKINS_HOME/jobs/petclinic-build/ $JENKINS_HOME/jobs/petclinic-docker/
 # copy job config as root (no other way)
-COPY config.xml /var/jenkins_home/jobs/petclinic-build/config.xml
-COPY credentials.xml  /var/jenkins_home/
-COPY org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml /var/jenkins_home/
+COPY jobs/petclinic-build/config.xml $JENKINS_HOME/jobs/petclinic-build/config.xml
+COPY jobs/petclinic-docker/config.xml $JENKINS_HOME/jobs/petclinic-docker/config.xml
+COPY credentials.xml  $JENKINS_HOME
+COPY org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml $JENKINS_HOME
 
-# TODO cannot figure out how to copy and change permissions.
-# Open issues on Docker indicate this is a bug.
+# Add Jenkins Plugins list
+COPY plugins.txt $JENKINS_HOME/plugins.txt
+COPY plugin.sh $JENKINS_HOME/plugin.sh
+WORKDIR $JENKINS_HOME
+RUN sh -c "$JENKINS_HOME/plugin.sh $JENKINS_HOME/plugins.txt"
 
-# RUN chown -R jenkins:jenkins /var/jenkins_home/jobs/
-# RUN chmod -R 755 /var/jenkins_home/jobs/petclinic-build/
-
-# commands below are run as user jenkins
-USER jenkins
+# download and run plugin.sh script
+# RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/jenkinsci/docker/master/install-plugins.sh)" /var/lib/jenkins/plugins.txt
 
 # prevent jenkins from showing "unlock jenkins" dialog.
-RUN echo 2.7.1 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
-
-# install needed plugins 
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+RUN echo 2.7.1 > $JENKINS_HOME/ref/jenkins.install.InstallUtil.lastExecVersion
 
 # unless these HPIs are present, dependencies are not satisfied and above plugins are not installed.
-WORKDIR /usr/share/jenkins/ref/plugins
-RUN wget http://updates.jenkins-ci.org/download/plugins/script-security/1.13/script-security.hpi
-RUN wget http://updates.jenkins-ci.org/download/plugins/junit/1.2/junit.hpi
-RUN wget http://updates.jenkins-ci.org/download/plugins/matrix-project/1.6/matrix-project.hpi
+#WORKDIR /var/lib/jenkins/ref/plugins
+#RUN wget http://updates.jenkins-ci.org/download/plugins/script-security/1.13/script-security.hpi
+#RUN wget http://updates.jenkins-ci.org/download/plugins/junit/1.2/junit.hpi
+#RUN wget http://updates.jenkins-ci.org/download/plugins/matrix-project/1.6/matrix-project.hpi
+
+CMD exec java $JAVA_OPTS -jar /usr/share/jenkins/jenkins.war $JENKINS_OPTS

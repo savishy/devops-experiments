@@ -1,4 +1,8 @@
+# deps for maven plugin
+javadoc:1.4
+
 # deps for credentials
+
 icon-shim:2.0.2
 credentials:1.22
 workflow-step-api:1.14.2
