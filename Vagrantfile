@@ -6,8 +6,12 @@ Vagrant.configure(2) do |config|
   
   config.vm.provider :aws do |aws, override|
 
-    # is this needed?
-    config.vm.box = "lattice/ubuntu-trusty-64"
+    # choosing a box that is supported for both
+    # virtualbox and aws providers.
+    # the idea is to "vagrant up" a local instance, run tests locally,
+    # and deploy to "vagrant up --provider=aws" when it works properly.
+    
+    config.vm.box = "perconajayj/centos-x86_64"
 
     # read security data from local environment variables.
     
