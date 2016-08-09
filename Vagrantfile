@@ -13,6 +13,12 @@ Vagrant.configure(2) do |config|
     
     config.vm.box = "perconajayj/centos-x86_64"
 
+    # forward ports from host to virtualbox vm
+    config.vm.network "forwarded_port", guest: 80, host: 8080, protocol: "tcp"
+    config.vm.network "forwarded_port", guest: 80, host: 8080, protocol: "udp"
+    config.vm.network "forwarded_port", guest: 8081, host: 8081, protocol: "tcp"
+    config.vm.network "forwarded_port", guest: 8081, host: 8081, protocol: "udp"
+    
     # read security data from local environment variables.
     
     aws.keypair_name = ENV['AWS_KEYPAIR_NAME']

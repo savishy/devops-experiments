@@ -7,7 +7,7 @@ RUN apt-get install -y wget software-properties-common curl git openjdk-8-jdk-he
 # env vars
 ENV JENKINS_HOME /var/lib/jenkins
 ENV JAVA_OPTS "-Djava.awt.headless=true -Dhudson.diyChunking=false"
-ENV JENKINS_OPTS "--httpPort=8080"
+ENV JENKINS_OPTS "--httpPort=8081"
 # install Jenkins
 RUN wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
 RUN sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'

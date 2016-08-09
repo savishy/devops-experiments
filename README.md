@@ -3,10 +3,15 @@
 This branch (`attempt-2`) deals with a second attempt at solving the DevOps
 assignment.
 
-1. To run this type: `vagrant up --provider=aws`.
+To run this on Virtualbox, type `vagrant up`.
+
+To run this on AWS:
+
+1. Type: `vagrant up --provider=aws`.
 1. Then go to your AWS management console and wait for the instance to come
    up. Afterward, use the public DNS address of the instance with `:8080` to
    launch the web application.
+
 
 ## Summary ##
 
@@ -45,6 +50,9 @@ Details about Vagrantfile
     - aws.region = "ap-south-1" (i.e Mumbai)
     - aws.instance_type = "t2.micro"
 
+1. I am using a Vagrant box that's supported for both `aws` and `virtualbox`
+   providers. The idea is that I develop the scripts using `vagrant up`, then
+   deploy them using `vagrant up --provider=aws`.
 
 ### Ansible ###
 

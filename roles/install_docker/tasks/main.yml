@@ -8,7 +8,7 @@
     gpgcheck: yes
     gpgkey: https://yum.dockerproject.org/gpg
 
-    # update yum
+# update yum
 - name: yum update
   yum:
     name: '*'
@@ -20,7 +20,24 @@
     name: docker
     update_cache: yes
     state: latest
-  notify: start docker service
+
+# install jdk
+- name: install JDK
+  yum:
+    name: java-1.8.0-openjdk
+    update_cache: yes
+    state: latest
+
+    # install jdk
+- name: install JDK
+  yum:
+    name: java-1.8.0-openjdk-devel
+    update_cache: yes
+    state: latest
+
+# install pip
+- name: install pip
+  shell: curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && python get-pip.py
 
 # install docker-py as it is needed by docker-image
 - name: install docker-py
@@ -28,6 +45,10 @@
     name: docker-py
     state: present
   notify: start docker service
+
+- name: create docker group
+  group:
+    name: docker
 
 - name: add ec2 user to docker group
   # command: usermod -a -G docker ec2-user

@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 
 # install common packages
 RUN apt-get update -qqy
-RUN apt-get install -y wget software-properties-common curl git
+RUN apt-get install -y wget software-properties-common curl git openjdk-8-jdk-headless
 
 # env vars
 ENV JENKINS_HOME {{ jenkins_home }}
