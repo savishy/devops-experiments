@@ -44,6 +44,7 @@
   pip:
     name: docker-py
     state: present
+    executable: /usr/local/bin/pip
   notify: start docker service
 
 - name: create docker group
