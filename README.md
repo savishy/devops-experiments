@@ -1,7 +1,16 @@
 # DevOps Experiments (Attempt 2) #
 
-This branch (`attempt-2`) deals with a second attempt at solving the DevOps
-assignment.
+This branch (`attempt-2`) deals with an alternate approach to creating a
+one-click DevOps CI/CD Pipeline.
+
+This branch utilizes:
+
+- Vagrant
+- Ansible
+- Docker
+- AWS
+
+## How to Run ##
 
 To run this on Virtualbox, type `vagrant up`.
 
@@ -13,20 +22,30 @@ To run this on AWS:
    launch the web application.
 
 
-## Summary ##
+This will do the following:
 
-What's different from the `master` branch:
+1. Bring up a box in AWS using Vagrant.
+1. Install Docker in that box.
+1. Run a Dockerfile to build a Jenkins image.
+1. Run a Jenkins Docker container using that image.
+1. In this Jenkins container, create jobs for:
+   - building the sample petclinic-application into a WAR
+   - deploying that WAR into a Dockerized tomcat application.
+1. Run the jobs so that the petclinic Docker image is built successfully.
+
+## Implementation Notes ##
+
+### Vagrant ###
+
+Details about Vagrantfile:
+
+1. The `Vagrantfile` uses a Vagrant box that is available for both
+   `virtualbox` and `aws` providers. This enables the flow of "develop
+   locally, deploy to aws".
 
 1. The `Vagrantfile` deals with provisioning of an EC2 instance *as well as
    running an Ansible playbook.* (Previously I was launching the Ansible
    playbook separately)
-2. The Ansible Playbook  **configures the environment on the host to be able
-   to launch Docker containers.**
-3. The Docker containers encapsulate building and running the application.
-
-### Vagrant ###
-
-Details about Vagrantfile
 
 1. All sensitive data is retrieved from environment variables and stored *out
    of the Vagrantfile*. So to run `vagrant up --provider=aws` the following
@@ -41,7 +60,7 @@ Details about Vagrantfile
    AWS_KEYPATH: local location of the key PEM file.
    ```
 
-1. The only role of the Vagrantfile is to setup the virtualization
+1. The only role of the `Vagrantfile` is to setup the virtualization
    environment.
    This makes it easy if we are swapping out AWS (for eg) with Virtualbox.
 
@@ -56,11 +75,12 @@ Details about Vagrantfile
 
 ### Ansible ###
 
-The only role of Ansible is to run a playbook that installs and sets up Docker
-on the instance.
+The Ansible Playbook's job is to run a playbook which:
 
-(**compared to the previous attempt, where Ansible Playbook took charge of
-installing and configuring the application and starting it)
+1. configures the environment on the host for Docker
+1. creates a Jenkins Docker container from Dockerfile, which also contains Jenkins
+   job configurations for building `petclinic`
+1. builds and runs Jenkins jobs
 
 This makes it easy for us if we want to replace Ansible with say, Chef or
 Puppet. (in such a case, the only thing we would need to do is to write
@@ -68,7 +88,7 @@ appropriate recipes to setup Docker).
 
 ### Docker ###
 
-Docker does the heavy lifting of building and running the application.
+Docker contains all the configuration required for building and running the application.
 
 There are two Docker containers:
 
