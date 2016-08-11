@@ -6,7 +6,7 @@
 - name: run tomcat petclinic container
   docker_container:
     name: tomcat-petclinic-container
-    image: tomcat-petclinic
+    image: savishy/tomcat-petclinic:latest
     state: started
     ports: 8080:8080
     exposed: 8080
