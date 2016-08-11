@@ -56,6 +56,15 @@
       <command>XRA=&quot;eyJ1c2VybmFtZSI6InNhdmlzaHkiLCJwYXNzd29yZCI6IlRlZW5UaXRhbiFAIiwiZW1haWwiOiJzYXZpc2h5LnB2Lm9ubGluZUBvdXRsb29rLmNvbSIsInNlcnZlcmFkZHJlc3MiOiJodHRwOi8vaW5kZXguZG9ja2VyLmlvL3YxIn0K&quot;
 curl -v -X POST --header &quot;X-Registry-Auth: $XRA&quot; http://172.17.0.1:2375/images/savishy/tomcat-petclinic/push</command>
     </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.35">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.TagImageCommand">
+        <image>savishy/tomcat-petclinic</image>
+        <repository></repository>
+        <tag>latest</tag>
+        <ignoreIfNotFound>false</ignoreIfNotFound>
+        <withForce>false</withForce>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>
   <publishers/>
   <buildWrappers/>

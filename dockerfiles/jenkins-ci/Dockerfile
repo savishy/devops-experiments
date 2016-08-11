@@ -1,3 +1,5 @@
+# Ansible managed: /home/vish/vishy/devops-agility-roots/devops-experiments/roles/docker_jenkins/templates/Dockerfile.jenkins modified on 2016-08-09 11:31:12 by vish on freeman
+# This is just a proof of concept.
 FROM ubuntu:16.04
 
 # install common packages
