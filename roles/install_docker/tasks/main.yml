@@ -21,6 +21,13 @@
     update_cache: yes
     state: latest
 
+# docker needs to expose its API
+# so we need to push our defaults file in
+- name: push docker service settings
+  template:
+    src: sysconfig.docker
+    dest: /etc/sysconfig/docker
+
 # install jdk
 - name: install JDK
   yum:
