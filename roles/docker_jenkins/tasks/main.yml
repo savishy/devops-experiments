@@ -16,6 +16,9 @@
 
 # run docker jenkins container
 # TODO running this as root. see dockerfile
+# bind-mounting /var/run/docker.sock from host to container in order to allow
+# access to host's Docker Daemon from within container.
+
 - name: run jenkins docker container
   docker_container:
     name: jenkins-ci-container
@@ -24,6 +27,7 @@
     exposed: "{{ jenkins_http_port }}"
     recreate: true
     detach: true
+    volumes: "/var/run/docker.sock:/var/run/docker.sock"
 
 # get IP of Jenkins container
 # http://stackoverflow.com/a/33457976/682912
@@ -56,5 +60,10 @@
 
 - name: initiate first build of petclinic
   command: java -jar jenkins-cli.jar -s http://{{ jenkins_ip }}:{{ jenkins_http_port }} build petclinic-build -v -s
+  args:
+    chdir: /vagrant/dockerfiles/jenkins-ci/
+
+- name: initiate first push of petclinic docker image
+  command: java -jar jenkins-cli.jar -s http://{{ jenkins_ip }}:{{ jenkins_http_port }} build petclinic-docker -v -s
   args:
     chdir: /vagrant/dockerfiles/jenkins-ci/
