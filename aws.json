@@ -1,0 +1,31 @@
+{
+    "region": "ap-south-1",
+    "availability_zone": "a",
+    "ssh_username": "ec2-user",
+    "ec2s": {
+        "tomcat0": {
+            "ami_id": "ami-ffbdd790",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Name": "tomcat0",
+                "Role": "webserver"
+            }
+        },
+        "jenkins0": {
+            "ami_id": "ami-ffbdd790",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Name": "jenkins0",
+                "Role": "ci"
+            }
+        },
+        "monitor0": {
+            "ami_id": "ami-ffbdd790",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Name": "monitor0",
+                "Role": "monitor"
+            }
+        }
+    }
+}
