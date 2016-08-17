@@ -11,14 +11,6 @@
                 "Role": "webserver"
             }
         },
-        "jenkins0": {
-            "ami_id": "ami-ffbdd790",
-            "instance_type": "t2.micro",
-            "tags": {
-                "Name": "jenkins0",
-                "Role": "ci"
-            }
-        },
         "monitor0": {
             "ami_id": "ami-ffbdd790",
             "instance_type": "t2.micro",

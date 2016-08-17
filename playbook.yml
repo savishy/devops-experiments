@@ -1,8 +1,8 @@
 ---
 - name: setup docker and run Dockerfiles
 
-  # name of the host to run this on.
-  hosts: default
+  # name of the host groups to run this on.
+  hosts: webservers
   vars:
 
     # execute all commands as root
@@ -15,3 +15,12 @@
   - docker_jenkins
   - docker_tomcat
 
+- name: setup monitoring
+  hosts: monitors
+  vars:
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_become: true
+  roles:
+    - install_docker
+    - setup_monitor

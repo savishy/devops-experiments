@@ -57,9 +57,13 @@ Vagrant.configure(2) do |config|
   # if we want to switch to say, chef or puppet we should be able
   # to do that here.
   # the playbook will in turn, setup a docker environment.
-
   
   config.vm.provision "ansible" do |ansible|
+    ansible.groups = {
+      "webservers" => ["tomcat0"],
+      "monitors" => ["monitor0"]
+    }
+
     ansible.verbose = "vvvv"
     ansible.playbook = "playbook.yml"
   end

@@ -54,6 +54,14 @@
     executable: /usr/local/bin/pip
   notify: start docker service
 
+# install docker-compose as it is needed by docker-image
+- name: install docker-compose
+  pip:
+    name: docker-compose
+    state: present
+    executable: /usr/local/bin/pip
+  notify: start docker service
+
 - name: create docker group
   group:
     name: docker
