@@ -1,13 +1,3 @@
-# read JSON file
-aws_cfg = JSON.parse(File.read("aws.json"))
-
-# read and store env vars
-keypair_name = ENV['AWS_KEYPAIR_NAME']
-access_key_id = ENV['AWS_ACCESS_KEY']
-secret_access_key = ENV['AWS_SECRET_KEY']
-security_groups = ENV['AWS_SECURITYGROUP']
-private_key_path = ENV['AWS_KEYPATH']
-
 Vagrant.configure(2) do |config|
 
   config.vm.box = "perconajayj/centos-x86_64"
@@ -57,7 +47,7 @@ Vagrant.configure(2) do |config|
   # if we want to switch to say, chef or puppet we should be able
   # to do that here.
   # the playbook will in turn, setup a docker environment.
-  
+
   config.vm.provision "ansible" do |ansible|
     ansible.groups = {
       "webservers" => ["tomcat0"],
@@ -67,5 +57,5 @@ Vagrant.configure(2) do |config|
     ansible.verbose = "vvvv"
     ansible.playbook = "playbook.yml"
   end
-  
+
 end

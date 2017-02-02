@@ -9,9 +9,14 @@ def checkoutGit(repoUrl) {
 }
 
 /**
+This method builds a war
 
 **/
-def buildWar() {
-  sh "export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 && ./mvnw install"
+def buildWar(javaHome,buildCmd) {
+  sh "export JAVA_HOME=${javaHome} && ${buildCmd}"
+}
+
+def archiveArtifacts(expression) {
+
 }
 return this
