@@ -20,10 +20,10 @@ node('master') {
   }
 
   stage('Create Docker Image') {
-
+    build job: 'build-docker-image', parameters: [[$class: 'StringParameterValue', name: 'WEBAPP', value: "petclinic"]]
   }
 
   stage('Deploy Docker Image') {
-
+    echo "This is where we would use Ansible to deploy the docker image into a server."
   }
 }
