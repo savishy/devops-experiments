@@ -16,7 +16,4 @@ def buildWar(javaHome,buildCmd) {
   sh "export JAVA_HOME=${javaHome} && ${buildCmd}"
 }
 
-def archiveArtifacts(expression) {
-
-}
 return this
