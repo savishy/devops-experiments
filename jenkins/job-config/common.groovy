@@ -5,7 +5,7 @@ def hello() {
 /**
 **/
 def checkoutGit(repoUrl) {
-  git url: ${repoUrl}
+  git url: "${repoUrl}"
 }
 
 /**
