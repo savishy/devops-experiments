@@ -1,7 +1,7 @@
 node('master') {
   //load common groovy script
   //http://stackoverflow.com/a/38108449/682912
-  def common = load '${rootDir}@script/jenkins/job-config/common.groovy'
+  def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
   stage('Build WAR') {
     common.hello()
   }
