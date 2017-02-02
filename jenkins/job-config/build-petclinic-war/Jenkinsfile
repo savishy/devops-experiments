@@ -2,7 +2,9 @@ node('master') {
   //load common groovy script
   //http://stackoverflow.com/a/38108449/682912
   def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
+
   stage('Build WAR') {
-    common.hello()
+    common.checkoutGit("https://github.com/spring-projects/spring-petclinic")
+    common.buildWar()
   }
 }
