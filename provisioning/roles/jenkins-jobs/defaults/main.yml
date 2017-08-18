@@ -1,0 +1,7 @@
+---
+pipeline_name: "petclinic-pipeline"
+pipeline_scm_url: "http://github.com/savishy/devops-experiments"
+pipeline_scm_branch: "refs/heads/attempt-2"
+pipeline_jenkinsfile_path: "jenkins/job-config/build-petclinic-war/Jenkinsfile"
+pipeline_lightweight_checkout: "false"
+pipeline_scm_polling_schedule: "H 1 * * *"

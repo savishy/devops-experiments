@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  vars:
+    aws_access_key: "{{ lookup('env','VAGRANT_AWS_ACCESS_KEY') }}"
+    aws_secret_key: "{{ lookup('env','VAGRANT_AWS_SECRET_KEY') }}"
+    host_ip: "{{my_ipaddr}}"
+    ec2_group_name: vish_devops_experiments
+    ec2_region: "us-east-1"
+    ec2_vpc_id: "vpc-c21844bb"
+    ec2_ports:
+       - { proto: "tcp", from: "80", to: "80" }
+       - { proto: "tcp", from: "22", to: "22" }
+       - { proto: "tcp", from: "2375", to: "2375" }
+       - { proto: "tcp", from: "8080", to: "8080" }
+       - { proto: "tcp", from: "8081", to: "8081" }
+
+  roles:
+  - ansible-roles/ec2-create-group
