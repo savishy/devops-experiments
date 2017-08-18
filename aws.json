@@ -1,0 +1,28 @@
+{
+    "region": "us-east-1",
+    "availability_zone": "a",
+    "ssh_username": "ubuntu",
+    "ec2s": {
+        "1_app_server": {
+            "ami": "ami-b391b9c8",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Role": "app server"
+            }
+        },
+        "2_mon_ci": {
+            "ami": "ami-b391b9c8",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Role": "monitoring and ci server"
+            }
+        },
+        "3_docker": {
+            "ami": "ami-b391b9c8",
+            "instance_type": "t2.micro",
+            "tags": {
+                "Role": "docker registry"
+            }
+        }
+    }
+}
