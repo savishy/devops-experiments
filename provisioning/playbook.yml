@@ -1,15 +1,15 @@
 ---
-# install docker on all hosts
-# - name: setup docker
-#   hosts: docker
-#   vars:
-#     # execute all commands as root
-#     ansible_become_user: root
-#     ansible_become_method: sudo
-#     ansible_become: true
+#install docker on all hosts
+- name: setup docker
+  hosts: docker
+  vars:
+    # execute all commands as root
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_become: true
 
-  # roles:
-  # - { role: ansible-roles/install-docker, docker_user: ubuntu }
+  roles:
+  - { role: ansible-roles/install-docker, docker_user: ubuntu }
 
 # install and configure jenkins
 - name: setup jenkins
@@ -20,7 +20,7 @@
     ansible_become_method: sudo
     ansible_become: true
   roles:
-  # - { role: ansible-roles/jenkins }
-  # - { role: ansible-roles/jenkins-plugins }
-  - {role: ansible-roles/jenkins-cli}
-  - {role: jenkins-jobs}
+  - { role: ansible-roles/jenkins }
+  - { role: ansible-roles/jenkins-plugins }
+  - { role: ansible-roles/jenkins-cli, tags: ["cli","jobs"] }
+  - { role: jenkins-jobs, tags: ["jobs"] }

@@ -1,1 +1,6 @@
 ---
+- name: copy templated job config scripts to CLI directory
+  local_action: template src="pipeline-config.xml" dest={{local_cli_dir}}
+
+- name: Run CLI to create job
+  local_action: shell {{cli_cmd}} create-job {{pipeline_name}} {{cli_creds}} < {{local_cli_dir}}/pipeline-config.xml
