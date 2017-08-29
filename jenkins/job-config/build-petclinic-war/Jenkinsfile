@@ -13,9 +13,9 @@ node('master') {
   //http://stackoverflow.com/a/38108449/682912
   def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
   def dockerfileLoc = "${env.WORKSPACE}@script/docker/petclinic/"
+  def tempDir = pwd(tmp: true)
 
   stage('Create Docker WS') {
-    def tempDir = pwd(tmp: true)
     sh "cp ${dockerfileLoc}/Dockerfile ${tempDir}"
     dir(tempDir) {
         sh "ls"
