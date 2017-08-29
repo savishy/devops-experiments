@@ -42,7 +42,10 @@ http://mrhaki.blogspot.in/2009/04/escaping-quotes-in-groovy-strings.html
 https://groups.google.com/forum/#!topic/groovy-user/PAjWvGeu1rs
 **/
 def getMavenProjectVersion() {
-  sh "mvn -o -q -Dexec.executable='echo' -Dexec.args='${project.version}' org.codehaus.mojo:exec-maven-plugin:1.3.1:exec"
+
+  def cmd = $/./mvnw -q -Dexec.executable="echo" -Dexec.args='$${project.version}' org.codehaus.mojo:exec-maven-plugin:1.3.1:exec/$
+  def retVal = sh returnStdOut: true, script: cmd
+  return retVal
 }
 
 return this

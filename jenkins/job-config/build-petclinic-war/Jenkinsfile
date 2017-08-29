@@ -12,21 +12,34 @@ node('master') {
   //load common groovy script
   //http://stackoverflow.com/a/38108449/682912
   def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
+  def dockerfileLoc = "./docker/petclinic/"
 
   stage('Build Petclinic') {
     common.checkoutGit("https://github.com/spring-projects/spring-petclinic")
     common.buildWar("/usr/lib/jvm/java-1.8.0-openjdk-amd64","./mvnw install")
+    def appVersion = "1.5.1"
+    // def appVersion = common.getMavenProjectVersion()
+
     archiveArtifacts artifacts: "**/target/*.jar"
   }
 
-  stage('Build Docker Image') {
-    def dockerWorkspace = "./docker/petclinic/"
-    sh "cp ./target/spring-petclinic-1.5.1.jar $dockerWorkspace/petclinic.jar"
-    common.buildDockerImage(
-      "savishy/tomcat-petclinic:${BUILD_NUMBER}",
-      dockerWorkspace
-    )
+  stage('Create Docker Temp Workspace') {
+    def tempDir = pwd(tmp: true)
+    sh "cp ./target/spring-petclinic-${appVersion}.jar ${tempDir}/petclinic.jar"
+    sh "cp ${dockerfileLoc}/Dockerfile ${tempDir}"
+    dir(tempDir) {
+        sh "ls"
+    }
+  }
 
+  stage('Build Docker Image') {
+    dir(tempDir) {
+        sh "ls"
+      common.buildDockerImage(
+        "savishy/tomcat-petclinic:${BUILD_NUMBER}",
+        dockerfileLoc
+      )
+    }
   }
 
   stage('Push Docker Image To Registry') {
