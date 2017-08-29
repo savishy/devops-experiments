@@ -20,7 +20,13 @@ node('master') {
   }
 
   stage('Create Docker Image') {
-    build job: 'build-docker-image', parameters: [[$class: 'StringParameterValue', name: 'WEBAPP', value: "petclinic"]]
+    def dockerWorkspace = "docker/petclinic/"
+    sh "cp target/spring-petclinic-1.5.1.jar $dockerWorkspace/petclinic.jar"
+    common.buildDockerImage(
+      "savishy/tomcat-petclinic:${BUILD_NUMBER}",
+      dockerWorkspace
+    )
+
   }
 
   stage('Push Docker Image To Registry') {
