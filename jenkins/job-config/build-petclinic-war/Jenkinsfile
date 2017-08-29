@@ -17,7 +17,6 @@ node('master') {
   stage('Build Petclinic') {
     common.checkoutGit("https://github.com/spring-projects/spring-petclinic")
     common.buildWar("/usr/lib/jvm/java-1.8.0-openjdk-amd64","./mvnw install")
-    def appVersion = "1.5.1"
     // def appVersion = common.getMavenProjectVersion()
 
     archiveArtifacts artifacts: "**/target/*.jar"
@@ -25,6 +24,7 @@ node('master') {
 
   stage('Create Docker Temp Workspace') {
     def tempDir = pwd(tmp: true)
+    def appVersion = "1.5.1"
     sh "cp ./target/spring-petclinic-${appVersion}.jar ${tempDir}/petclinic.jar"
     sh "cp ${dockerfileLoc}/Dockerfile ${tempDir}"
     dir(tempDir) {
