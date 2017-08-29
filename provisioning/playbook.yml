@@ -19,6 +19,7 @@
     ansible_become_user: root
     ansible_become_method: sudo
     ansible_become: true
+    jenkins_java_opts: " -Xmx1024m -Djava.awt.headless=true -Dhudson.diyChunking=false -Djenkins.install.runSetupWizard=false"
   roles:
   - { role: ansible-roles/jenkins }
   - { role: ansible-roles/jenkins-plugins }
