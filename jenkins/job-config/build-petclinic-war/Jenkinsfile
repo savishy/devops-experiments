@@ -12,7 +12,7 @@ node('master') {
   //load common groovy script
   //http://stackoverflow.com/a/38108449/682912
   def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
-  def dockerfileLoc = "./docker/petclinic/"
+  def dockerfileLoc = "${env.WORKSPACE}@script/docker/petclinic/"
 
   stage('Create Docker WS') {
     def tempDir = pwd(tmp: true)
