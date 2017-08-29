@@ -13,15 +13,15 @@ node('master') {
   //http://stackoverflow.com/a/38108449/682912
   def common = load "${env.WORKSPACE}@script/jenkins/job-config/common.groovy"
 
-  stage('Build WAR') {
+  stage('Build Petclinic') {
     common.checkoutGit("https://github.com/spring-projects/spring-petclinic")
     common.buildWar("/usr/lib/jvm/java-1.8.0-openjdk-amd64","./mvnw install")
     archiveArtifacts artifacts: "**/target/*.jar"
   }
 
-  stage('Create Docker Image') {
-    def dockerWorkspace = "docker/petclinic/"
-    sh "cp target/spring-petclinic-1.5.1.jar $dockerWorkspace/petclinic.jar"
+  stage('Build Docker Image') {
+    def dockerWorkspace = "./docker/petclinic/"
+    sh "cp ./target/spring-petclinic-1.5.1.jar $dockerWorkspace/petclinic.jar"
     common.buildDockerImage(
       "savishy/tomcat-petclinic:${BUILD_NUMBER}",
       dockerWorkspace
