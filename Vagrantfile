@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
         ec2.keypair_name = ENV['VAGRANT_AWS_KEYPAIR_NAME']
         ec2.access_key_id = ENV['VAGRANT_AWS_ACCESS_KEY']
         ec2.secret_access_key = ENV['VAGRANT_AWS_SECRET_KEY']
-        override.ssh.private_key_path = ENV['VAGRANT_AWS_KEY_PATH']
+        override.ssh.private_key_path = ENV['VAGRANT_AWS_KEYPATH']
         ec2.security_groups = "vish_devops_experiments"
 
         # read region, ami etc from json.
@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
   end
 
   # python required for ansible
-  config.vm.provision :shell, inline: "sudo apt-get install -qqy python"
+  config.vm.provision :shell, inline: "sudo apt-get update -qqy && sudo apt-get install -qqy python"
 
   # use ansible to run a playbook.
   # if we want to switch to say, chef or puppet we should be able
