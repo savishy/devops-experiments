@@ -11,6 +11,14 @@
   roles:
   - { role: ansible-roles/install-docker, docker_user: ubuntu }
 
+- name: create registry
+  hosts: registry
+  vars:
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_become: true
+  roles:
+  - {role: docker-registry, tags: ["registry"] }
 # install and configure jenkins
 - name: setup jenkins
   hosts: ci

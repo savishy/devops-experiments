@@ -1,0 +1,34 @@
+---
+- set_fact: domain_name=ec2-54-86-125-75.compute-1.amazonaws.com
+- include_role:
+    name: jdauphant.ssl-certs
+  vars:
+    ssl_certs_common_name: "{{domain_name}}"
+
+- name: create client cert trust directory for docker
+  file:
+    name: /etc/docker/certs.d/domain_name:{{registry_port}}/
+    state: directory
+  become: true
+
+- name: copy pem as ca file
+  copy:
+    src: /etc/ssl/{{domain_name}}/{{domain_name}}.pem
+    dest: /etc/docker/certs.d/domain_name:{{registry_port}}/ca.crt
+    remote_src: true
+  become: true
+
+- name: run registry docker container
+  docker_container:
+    name: "registry"
+    image: "registry:2"
+    ports: "{{ registry_port }}:{{ registry_port }}"
+    recreate: true
+    restart: yes
+    volumes:
+    - "/etc/ssl/{{domain_name}}/:/certs"
+    env:
+      REGISTRY_HTTP_ADDR: "0.0.0.0:5000"
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/{{domain_name}}.pem"
+      REGISTRY_HTTP_TLS_KEY: "/certs/{{domain_name}}.key"
+    restart_policy: always

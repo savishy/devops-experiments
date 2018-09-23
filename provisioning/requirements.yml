@@ -1,3 +1,4 @@
 ---
+- src: jdauphant.ssl-certs
 - src: geerlingguy.java
 - src: https://github.com/savishy/ansible-roles

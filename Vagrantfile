@@ -56,11 +56,12 @@ Vagrant.configure(2) do |config|
     ansible.groups = {
       "docker" => ["1_app_server","2_mon_ci","3_docker"],
       "monitors" => ["2_mon_ci"],
+      "registry" => ["3_docker"],
       "ci" => ["2_mon_ci"]
     }
 
     ansible.playbook = "provisioning/playbook.yml"
-    ansible.verbose = "vvvv"
+    ansible.verbose = "vv"
     ansible.galaxy_role_file = "provisioning/requirements.yml"
     ansible.galaxy_roles_path = "provisioning/"
 
